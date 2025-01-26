@@ -1,0 +1,5 @@
+@font-face {
+    font-family: 'Capriola';
+    src: url('../fonts/Capriola.ttf') format('truetype'),
+         url('../fonts/Capriola.woff') format('woff');
+  }
