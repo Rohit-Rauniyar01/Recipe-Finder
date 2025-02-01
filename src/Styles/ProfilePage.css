@@ -1,0 +1,87 @@
+/* ProfilePage.css */
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f3f4f6;
+    overflow: hidden;
+  }
+  
+  .profile-container {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #f3f4f6;
+    padding: 24px;
+  }
+  
+  /* Back Button */
+  .back-button {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-size: 28px;
+    cursor: pointer;
+    transition: color 0.2s;
+  }
+  
+  .back-button:hover {
+    color: #4b5563;
+  }
+  
+  /* Profile Avatar and Name */
+  .avatar {
+    width: 120px !important;
+    height: 120px !important;
+    border: 3px solid #9ca3af;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .user-name {
+    margin-top: 16px;
+    font-size: 24px;
+    font-weight: 700;
+    color: #1f2937;
+  }
+  
+  /* Menu Items */
+  .menu-container {
+    margin-top: 24px;
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    background-color: white;
+    padding: 24px;
+    border-radius: 16px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    gap: 16px;
+  }
+  
+  .menu-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px;
+    border-radius: 8px;
+    font-size: 20px;
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s;
+  }
+  
+  .menu-item:hover {
+    background-color: #f3f4f6;
+  }
+  
+  .menu-item.highlight {
+    color: black;
+    font-size: 20px;
+  }
+  
+  .menu-item-icon {
+    font-size: 24px;
+  }
+  
