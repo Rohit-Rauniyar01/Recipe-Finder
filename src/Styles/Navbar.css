@@ -43,6 +43,7 @@
   padding: 5px 15px;
   border-radius: 5px;
   cursor: pointer;
+  margin-right: 20px; /* Add gap on the right side */
 }
 
 .signin-button:hover {

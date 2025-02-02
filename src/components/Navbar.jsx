@@ -12,7 +12,6 @@ function Navbar() {
         <li>Home</li>
         <li>Recipe</li>
         <li>Ingredient</li>
-        <li>Trending</li>
         <li>Search</li>
         <li>
           <button className="signin-button">Sign in</button>

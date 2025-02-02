@@ -1,0 +1,16 @@
+/* HomeImage styling */
+.main-content {
+    margin-top: 70px; /* Adds space below the fixed navbar */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%; /* Ensures the container takes full width */
+    height: 600px; /* Adjust the height as needed */
+    overflow: hidden; /* Prevents any overflow issues */
+  }
+  
+  .home-image {
+    width: 100%; /* Ensures the image spans the full width */
+    height: 100%; /* Makes the image cover the full height */
+    object-fit: cover; /* Ensures the image covers the container without distortion */
+  }
