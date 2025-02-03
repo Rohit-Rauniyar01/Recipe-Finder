@@ -1,5 +1,5 @@
 import Navbar from "../components/Navbar"; 
-import MainContent from "../Pages/MainContent";
+import MainContent from "../Pages/HomeSection/MainContent";
 
 const HomePage = () => {
   return (
