@@ -1,20 +1,24 @@
-import "react";
+// import React from "react";
+import { useNavigate } from "react-router-dom";  // Import useNavigate
 import "/src/Styles/Navbar.css";
-// import logo from "src\assets\logo1.png"; // Replace with the path to your logo
 
 function Navbar() {
+  const navigate = useNavigate();  // Initialize the navigate function
+
   return (
     <nav className="navbar">
-      <div className="navbar-logo">
-        <img src="src\assets\logo1.png" alt="Recipe Finder Logo" />
+      <div className="navbar-logo" onClick={() => navigate('/')}> {/* Clicking logo navigates to Home */}
+        <img src="/src/assets/logo1.png" alt="Recipe Finder Logo" />
       </div>
       <ul className="navbar-menu">
-        <li>Home</li>
+        <li onClick={() => navigate('/')}>Home</li>  {/* Navigate to Home */}
         <li>Recipe</li>
         <li>Ingredient</li>
         <li>Search</li>
         <li>
-          <button className="signin-button">Sign in</button>
+          <button className="signin-button" onClick={() => navigate('/login')}>
+            Sign in
+          </button>
         </li>
       </ul>
     </nav>
@@ -22,10 +26,3 @@ function Navbar() {
 }
 
 export default Navbar;
-
-
-
-
-// git remote add origin https://github.com/Rohit-Rauniyar01/Recipe-Finder-using-React.git
-// git branch -M main
-// git push -u origin main
