@@ -1,18 +1,19 @@
-// import React from "react";
-import { useNavigate } from "react-router-dom";  // Import useNavigate
-import "/src/Styles/Navbar.css";
+// Navbar.js or Navbar.jsx
+// import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import '/src/Styles/Navbar.css';
 
 function Navbar() {
-  const navigate = useNavigate();  // Initialize the navigate function
+  const navigate = useNavigate();
 
   return (
     <nav className="navbar">
-      <div className="navbar-logo" onClick={() => navigate('/')}> {/* Clicking logo navigates to Home */}
+      <div className="navbar-logo" onClick={() => navigate('/')}>
         <img src="/src/assets/logo1.png" alt="Recipe Finder Logo" />
       </div>
       <ul className="navbar-menu">
-        <li onClick={() => navigate('/')}>Home</li>  {/* Navigate to Home */}
-        <li>Recipe</li>
+        <li onClick={() => navigate('/')}>Home</li>
+        <li onClick={() => navigate('/recipe')}>Recipe</li> {/* Updated path */}
         <li>Ingredient</li>
         <li>Search</li>
         <li>

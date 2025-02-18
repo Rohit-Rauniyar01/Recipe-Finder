@@ -1,0 +1,72 @@
+/* Global styles for the recipe page */
+.recipe-page {
+  font-family: 'Arial', sans-serif;
+  padding: 40px;
+  background-color: #f8f8f8;
+  text-align: center;
+}
+
+/* Large "RECIPE" text */
+.recipe-heading {
+  font-size: 50px;
+  margin-top: 400px;
+  font-weight: bold;
+  margin-bottom: 30px;
+  color: #d9534f; /* Vibrant red color */
+  text-transform: uppercase;
+  letter-spacing: 5px;
+  text-align: center;
+}
+
+/* Styling for the recipe container */
+.recipe-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  padding: 20px;
+}
+
+/* Styling for each recipe card */
+.recipe-card {
+  width: 250px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background-color: white;
+}
+
+/* Styling for the image */
+.recipe-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-bottom: 2px solid #ddd;
+  transition: transform 0.3s ease;
+}
+
+/* Hover effects for image and card */
+.recipe-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.recipe-card:hover .recipe-image {
+  transform: scale(1.05);
+}
+
+/* Styling for the recipe name */
+.recipe-name {
+  font-size: 20px;
+  font-weight: bold;
+  margin: 15px;
+  color: #333;
+  text-transform: capitalize;
+  transition: color 0.3s ease;
+}
+
+/* Hover effect for the recipe name */
+.recipe-card:hover .recipe-name {
+  color: #d9534f;
+}
