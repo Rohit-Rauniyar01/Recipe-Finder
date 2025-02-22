@@ -1,7 +1,9 @@
+import CategoryPage from "./CategoryPage";
 import "/src/Styles/MainContent.css"; 
 
 const MainContent = () => {
   return (
+    <div className="MainPage">
     <div className="main-content">
       <img src="src/assets/homeimage.png" alt="Home" className="home-image" />
       <div className="overlay-card">
@@ -12,6 +14,13 @@ const MainContent = () => {
         ingredients needed.</p>
         </div>
       </div>
+    </div><br/><br/>
+    <div className="middle-text">
+        <h3>Looking for inspiration?
+        </h3>
+        <p>To make some thing new</p>
+      </div>
+      <CategoryPage/>
     </div>
   );
 };

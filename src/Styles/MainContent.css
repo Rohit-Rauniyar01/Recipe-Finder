@@ -1,4 +1,11 @@
 /* HomeImage styling */
+.body{
+margin: 0;
+padding: 0;
+}
+.main-content{
+  height: 1500px;
+}
 .main-content {
   margin-top: 70px; /* Adds space below the fixed navbar */
   display: flex;
@@ -54,4 +61,23 @@
 
 .overlay-card p {
   font-size: 36px; /* Adjust font size as needed */
+}
+.middle-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 90px; /* Centers content vertically */
+  text-align: center; /* Centers text */
+}
+
+.middle-text h3 {
+  font-weight: bold;
+  font-size: 28px;
+  margin-bottom: 5px; /* Reduce gap between h3 and p */
+}
+
+.middle-text p {
+  font-size: 22px;
+  margin-top: 0; /* Ensure no extra margin on top */
 }
