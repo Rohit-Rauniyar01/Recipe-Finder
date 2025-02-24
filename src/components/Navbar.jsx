@@ -14,7 +14,7 @@ function Navbar() {
       <ul className="navbar-menu">
         <li onClick={() => navigate('/')}>Home</li>
         <li onClick={() => navigate('/recipe')}>Recipe</li> {/* Updated path */}
-        <li>Ingredient</li>
+        <li onClick={() => navigate('/trending')}>Trending</li>
         <li>Search</li>
         <li>
           <button className="signin-button" onClick={() => navigate('/login')}>

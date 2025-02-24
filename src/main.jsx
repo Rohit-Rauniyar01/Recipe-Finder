@@ -1,24 +1,43 @@
-import { StrictMode } from 'react';
-import { createRoot } from 'react-dom/client';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 
-import HomePage from './Pages/HomePage';
-import RecipePage from './Pages/RecipePage';
-import LoginPage from './Pages/LoginSection/Login';
-import SignUpPage from './Pages/LoginSection/Signup';  // ✅ Import SignUpPage
-import ForgotPassword from './Pages/LoginSection/Forgetpassword';  // ✅ Import ForgotPassword
+import HomePage from "./Pages/HomePage";
+import RecipePage from "./Pages/RecipePage";
+import Trending from "./Pages/Trending";
+import LoginPage from "./Pages/LoginSection/Login";
+import SignUpPage from "./Pages/LoginSection/Signup";
+import ForgotPassword from "./Pages/LoginSection/Forgetpassword";
+import Footer from "./components/Footer"; // Import Footer
 
+const App = () => {
+  const location = useLocation();
+  const hideFooterRoutes = ["/login", "/signup", "/forgot-password"];
 
-createRoot(document.getElementById('root')).render(
+  return (
+    <>
+      <Routes>
+        {/* Routes WITHOUT Footer */}
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/signup" element={<SignUpPage />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
+
+        {/* Routes WITH Footer */}
+        <Route path="/" element={<HomePage />} />
+        <Route path="/recipe" element={<RecipePage />} />
+        <Route path="/trending" element={<Trending />} />
+      </Routes>
+
+      {/* Show Footer only if the current route is NOT in hideFooterRoutes */}
+      {!hideFooterRoutes.includes(location.pathname) && <Footer />}
+    </>
+  );
+};
+
+createRoot(document.getElementById("root")).render(
   <StrictMode>
     <Router>
-      <Routes>
-        <Route path="/" element={<HomePage />} />  {/* Home page */}
-        <Route path="/recipe" element={<RecipePage />} />  {/* Recipe page */}
-        <Route path="/login" element={<LoginPage />} />  {/* Login page */}
-        <Route path="/signup" element={<SignUpPage />} />  {/* ✅ Signup page added */}
-        <Route path="/forgot-password" element={<ForgotPassword />} /> {/* ✅ Forgot Password page added */}x 
-      </Routes>
+      <App />
     </Router>
   </StrictMode>
 );
