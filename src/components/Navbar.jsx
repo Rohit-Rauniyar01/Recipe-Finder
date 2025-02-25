@@ -15,7 +15,7 @@ function Navbar() {
         <li onClick={() => navigate('/')}>Home</li>
         <li onClick={() => navigate('/recipe')}>Recipe</li> {/* Updated path */}
         <li onClick={() => navigate('/trending')}>Trending</li>
-        <li>Search</li>
+        <li onClick={() => navigate('/search')}>Search</li>
         <li>
           <button className="signin-button" onClick={() => navigate('/login')}>
             Sign in

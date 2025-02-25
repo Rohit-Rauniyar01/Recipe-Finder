@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Routes, Route, useLocation } from "react-route
 import HomePage from "./Pages/HomePage";
 import RecipePage from "./Pages/RecipePage";
 import Trending from "./Pages/Trending";
+import RecipeSearch from "./Pages/Search";
 import LoginPage from "./Pages/LoginSection/Login";
 import SignUpPage from "./Pages/LoginSection/Signup";
 import ForgotPassword from "./Pages/LoginSection/Forgetpassword";
@@ -26,6 +27,7 @@ const App = () => {
         <Route path="/" element={<HomePage />} />
         <Route path="/recipe" element={<RecipePage />} />
         <Route path="/trending" element={<Trending />} />
+        <Route path="/search" element={<RecipeSearch />} />
       </Routes>
 
       {/* Show Footer only if the current route is NOT in hideFooterRoutes */}
