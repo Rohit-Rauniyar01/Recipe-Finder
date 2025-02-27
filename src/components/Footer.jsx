@@ -7,7 +7,7 @@ const Footer = () => {
       <footer className="footer">
         {/* Logo Section */}
         <div className="footer-logo">
-          <img src="logo.png" alt="Recipe Finder Logo" />
+          <img src="src/assets/footerimage.png" alt="Recipe Finder Logo" />
         </div>
 
         {/* About Links */}

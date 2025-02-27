@@ -10,10 +10,11 @@ import LoginPage from "./Pages/LoginSection/Login";
 import SignUpPage from "./Pages/LoginSection/Signup";
 import ForgotPassword from "./Pages/LoginSection/Forgetpassword";
 import Footer from "./components/Footer"; // Import Footer
+import AdminPanel from "./Admin/Adminpanel"; // ✅ Fixed Admin Panel path
 
 const App = () => {
   const location = useLocation();
-  const hideFooterRoutes = ["/login", "/signup", "/forgot-password"];
+  const hideFooterRoutes = ["/login", "/signup", "/forgot-password", "/admin"]; // Hide Footer on Admin Panel
 
   return (
     <>
@@ -22,6 +23,7 @@ const App = () => {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignUpPage />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route path="/admin" element={<AdminPanel />} /> {/* ✅ Added AdminPanel Route */}
 
         {/* Routes WITH Footer */}
         <Route path="/" element={<HomePage />} />

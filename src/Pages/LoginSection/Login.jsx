@@ -1,4 +1,3 @@
-// LoginPage.js
 import "../../Styles/Login.css";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -10,11 +9,19 @@ const LoginPage = () => {
   const [password, setPassword] = useState("");
 
   const handleLogin = () => {
-    if (username && password) {
-      // Add your login logic here
-      navigate("/"); // Navigate to home page upon successful login
+    const adminUsername = "admin";
+    const adminPassword = "admin123";
+
+    if (username === adminUsername && password === adminPassword) {
+      localStorage.setItem("isAdmin", "true");
+      localStorage.removeItem("isUser"); // Ensure only one role is set
+      navigate("/admin");
+    } else if (username && password) {
+      localStorage.setItem("isUser", "true");
+      localStorage.removeItem("isAdmin"); // Ensure only one role is set
+      navigate("/");
     } else {
-      alert("Please enter both username/email and password.");
+      alert("Please enter both username and password.");
     }
   };
 
