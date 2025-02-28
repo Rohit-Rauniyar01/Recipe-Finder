@@ -58,6 +58,7 @@
 
 .signin-button:hover {
   background-color: #ddd;
+  /* background-color: blue; */
 }
 
 /* Media query for smaller screens */

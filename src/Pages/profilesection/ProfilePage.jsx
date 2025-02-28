@@ -1,6 +1,8 @@
 import { FaEdit, FaHeart, FaCog, FaBullseye, FaInfoCircle, FaUserFriends, FaArrowLeft } from "react-icons/fa";
 import { Avatar } from "@mui/material";
 import "/src/Styles/ProfilePage.css";
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function MenuItem({ icon, text, highlight }) {
   return (
@@ -12,6 +14,21 @@ function MenuItem({ icon, text, highlight }) {
 }
 
 export default function ProfilePage() {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    // Check if user is authenticated
+    const token = localStorage.getItem('token');
+    if (!token) {
+      navigate('/login');
+    }
+  }, [navigate]);
+
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    navigate('/');
+  };
+
   return (
     <div className="profile-container">
       {/* Back Button */}
@@ -30,6 +47,7 @@ export default function ProfilePage() {
         <MenuItem icon={<FaInfoCircle />} text="About" path="/about" highlight />
         <MenuItem icon={<FaUserFriends />} text="Support" path="/support" />
       </div>
+      <button onClick={handleLogout}>Logout</button>
     </div>
   );
 }

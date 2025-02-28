@@ -1,16 +1,91 @@
 /* HomeImage styling */
+.body{
+margin: 0;
+padding: 0;
+}
+.main-content{
+  height: 1500px;
+}
+.MainPage{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 .main-content {
-    margin-top: 70px; /* Adds space below the fixed navbar */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%; /* Ensures the container takes full width */
-    height: 600px; /* Adjust the height as needed */
-    overflow: hidden; /* Prevents any overflow issues */
-  }
-  
-  .home-image {
-    width: 100%; /* Ensures the image spans the full width */
-    height: 100%; /* Makes the image cover the full height */
-    object-fit: cover; /* Ensures the image covers the container without distortion */
-  }
+  /* background-color: #F11B4A; */
+  /* margin-top: 70px; Adds space below the fixed navbar */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 1800px; /* Ensures the container takes full width */
+  height: 600px; /* Adjust the height as needed */
+  position: relative; /* Necessary for positioning the overlay card */
+  overflow: hidden; /* Prevents any overflow issues */
+}
+
+.home-image {
+  width: 100%; /* Ensures the image spans the full width */
+  height: 100%; /* Makes the image cover the full height */
+  object-fit: cover; /* Ensures the image covers the container without distortion */
+}
+
+.overlay-card {
+  position: absolute;
+  top: 50%; /* Position vertically at the center */
+  left: 50%; /* Position horizontally at the center */
+  transform: translate(-50%, -50%); /* Adjust the card to truly center it */
+  width: 80%; /* Use percentage for responsive design */
+  max-width: 1600px; /* Maximum width of the card */
+  height: 340px; /* Adjust height as needed */
+  background-color: #F11B4A; /* Add a solid background */
+  padding: 20px;
+  border-radius: 8px; /* Optional: Add rounded corners */
+  color: white; /* Text color */
+  display: flex; /* Apply flexbox */
+  flex-direction: column; /* Stack the content vertically */
+  justify-content: center; /* Vertically center the content */
+  align-items: flex-start; /* Align items to the left */
+  text-align: left; /* Align text to the left */
+}
+
+.card-text {
+  display: flex;
+  margin-left: 110px;
+  flex-direction: column; /* Ensure text content is stacked vertically */
+  align-items: flex-start; /* Align text to the left */
+}
+
+.overlay-card h2,
+.overlay-card p {
+  margin: 0;
+  text-align: left; /* Ensure text starts from left */
+}
+
+.overlay-card h2 {
+  font-size: 50px;
+  color: white; /* Adjust font size as needed */
+}
+
+.overlay-card p {
+  font-size: 36px; /* Adjust font size as needed */
+}
+.middle-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 90px; /* Centers content vertically */
+  text-align: center; /* Centers text */
+}
+
+.middle-text h3 {
+  font-weight: bold;
+  font-size: 28px;
+  margin-bottom: 5px; /* Reduce gap between h3 and p */
+}
+
+.middle-text p {
+  font-size: 22px;
+  margin-top: 0; /* Ensure no extra margin on top */
+}
