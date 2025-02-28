@@ -11,10 +11,11 @@ import SignUpPage from "./Pages/LoginSection/Signup";
 import ForgotPassword from "./Pages/LoginSection/Forgetpassword";
 import Footer from "./components/Footer"; // Import Footer
 import AdminPanel from "./Admin/Adminpanel"; // ✅ Fixed Admin Panel path
+import AddRecipe from "./Admin/AddRecipe";
 
 const App = () => {
   const location = useLocation();
-  const hideFooterRoutes = ["/login", "/signup", "/forgot-password", "/admin"]; // Hide Footer on Admin Panel
+  const hideFooterRoutes = ["/login", "/signup", "/forgot-password", "/admin", "/add-recipe"]; // Hide Footer on Admin Panel
 
   return (
     <>
@@ -24,6 +25,7 @@ const App = () => {
         <Route path="/signup" element={<SignUpPage />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/admin" element={<AdminPanel />} /> {/* ✅ Added AdminPanel Route */}
+        <Route path="/add-recipe" element={<AddRecipe />} /> {/* ✅ Added AddRecipe Route */}
 
         {/* Routes WITH Footer */}
         <Route path="/" element={<HomePage />} />

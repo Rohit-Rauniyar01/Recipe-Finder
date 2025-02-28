@@ -1,9 +1,11 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import AddRecipe from "./AddRecipe"; // Import AddRecipe component
 import "/src/Styles/Adminpanel.css";
 
 const AdminPanel = () => {
   const navigate = useNavigate();
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     const isAdmin = localStorage.getItem("isAdmin");
@@ -30,11 +32,11 @@ const AdminPanel = () => {
       <div className="sidebar">
         <h2>Admin</h2>
         <button className="menu-btn">Dashboard</button>
-        <button className="menu-btn">Add Recipes</button>
+        <button className="menu-btn" onClick={() => setIsModalOpen(true)}>
+          Add Recipes
+        </button> {/* ✅ Opens the modal */}
         <button className="menu-btn">List of Recipes</button>
-        <button className="logout-btn" onClick={handleLogout}>
-          LogOut
-        </button>
+        <button className="logout-btn" onClick={handleLogout}>LogOut</button>
       </div>
 
       {/* Main Content */}
@@ -49,15 +51,18 @@ const AdminPanel = () => {
             <p>{data.users}</p>
           </div>
           <div className="card">
-            <h3>Vegetarians Recipes</h3>
+            <h3>Vegetarian Recipes</h3>
             <p>{data.vegetarianRecipes}</p>
           </div>
           <div className="card">
-            <h3>Non-Vegetarians Recipes</h3>
+            <h3>Non-Vegetarian Recipes</h3>
             <p>{data.nonVegetarianRecipes}</p>
           </div>
         </div>
       </div>
+
+      {/* ✅ Render AddRecipe Modal If isModalOpen is True */}
+      {isModalOpen && <AddRecipe onClose={() => setIsModalOpen(false)} />}
     </div>
   );
 };
