@@ -3,7 +3,7 @@
   position: fixed; /* Fixes the navbar to the top of the screen */
   top: 0;
   left: 0;
-  width: 99%; /* Makes the navbar span the full width of the screen */
+  width: 100%; /* Ensure navbar spans full width */
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -15,6 +15,7 @@
 
 .navbar-logo img {
   height: 50px; /* Adjust logo height */
+  max-width: 100%; /* Ensure the image doesn't stretch beyond the container */
 }
 
 .navbar-menu {
@@ -36,6 +37,15 @@
   text-decoration: underline;
 }
 
+.navbar-menu li a {
+  color: white; /* Ensure the links are white */
+  text-decoration: none; /* Remove underline by default */
+}
+
+.navbar-menu li a:hover {
+  text-decoration: underline; /* Underline the links on hover */
+}
+
 .signin-button {
   background-color: white;
   color: black;
@@ -48,4 +58,27 @@
 
 .signin-button:hover {
   background-color: #ddd;
+}
+
+/* Media query for smaller screens */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column; /* Stack navbar items vertically */
+    padding: 15px; /* Adjust padding for mobile */
+  }
+
+  .navbar-menu {
+    flex-direction: column; /* Stack menu items vertically */
+    gap: 10px; /* Reduce gap between items */
+    width: 100%; /* Make menu items span the full width */
+    align-items: center; /* Center align menu items */
+  }
+
+  .navbar-logo img {
+    height: 40px; /* Adjust logo size for smaller screens */
+  }
+
+  .signin-button {
+    margin-top: 10px; /* Add some spacing above the sign-in button */
+  }
 }

@@ -1,18 +1,20 @@
-import "react";
+import  "react";
+import { Link } from "react-router-dom"; // Import Link from react-router-dom
 import "/src/Styles/Navbar.css";
-// import logo from "src\assets\logo1.png"; // Replace with the path to your logo
+// import logo from "src/assets/logo1.png"; // Replace with the correct path to your logo
 
 function Navbar() {
   return (
     <nav className="navbar">
       <div className="navbar-logo">
-        <img src="src\assets\logo1.png" alt="Recipe Finder Logo" />
+        <img src="/src/assets/logo1.png" alt="Recipe Finder Logo" />
       </div>
       <ul className="navbar-menu">
-        <li>Home</li>
-        <li>Recipe</li>
-        <li>Ingredient</li>
-        <li>Search</li>
+        <li><Link to="/">Home</Link></li>
+        <li><Link to="/recipe">Recipe</Link></li>
+        <li><Link to="/ingredient">Ingredient</Link></li>
+        <li><Link to="/search">Search</Link></li>
+        <li><Link to="/goal">Goals</Link></li> {/* Corrected Link */}
         <li>
           <button className="signin-button">Sign in</button>
         </li>
@@ -22,10 +24,3 @@ function Navbar() {
 }
 
 export default Navbar;
-
-
-
-
-// git remote add origin https://github.com/Rohit-Rauniyar01/Recipe-Finder-using-React.git
-// git branch -M main
-// git push -u origin main
