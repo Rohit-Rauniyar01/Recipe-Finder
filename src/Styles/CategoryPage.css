@@ -23,8 +23,8 @@
 .category-card {
   cursor: pointer;
   text-align: center;
-  border: 1px solid #ddd;
-  border-radius: 10px;
+  /* border: 1px solid #ddd; */
+  /* border-radius: 10px; */
   transition: 0.3s ease-in-out;
   height: 320px;
   width: 100%;

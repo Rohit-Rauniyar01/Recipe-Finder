@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import "/src/Styles/Login.css";
 
 const Login = () => {
-  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
@@ -13,9 +13,18 @@ const Login = () => {
     e.preventDefault();
     setError("");
 
+    // Check for admin credentials
+    if (username === "admin" && password === "admin123") {
+      // Store admin status in localStorage
+      localStorage.setItem("isAdmin", "true");
+      localStorage.setItem("user", JSON.stringify({ username: "admin", role: "admin" }));
+      navigate("/admin");
+      return;
+    }
+
     try {
       const response = await axios.post("http://localhost:5000/api/login", {
-        email,
+        email: username, // Using username field for email
         password,
       });
 
@@ -37,12 +46,12 @@ const Login = () => {
         {error && <div className="error-message">{error}</div>}
         <form onSubmit={handleSubmit}>
           <div className="input-group">
-            <label className="input-label">Email:</label>
+            <label className="input-label">Username/Email:</label>
             <input
-              type="email"
-              placeholder="Enter your email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              type="text"
+              placeholder="Enter your username or email"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
               className="input-field"
               required
             />

@@ -1,0 +1,123 @@
+.recipe-list-container {
+    padding: 1.5rem;
+    max-width: 56rem;
+    margin: 0 auto;
+  }
+  
+  .search-container {
+    display: flex;
+    gap: 0.75rem;
+    margin-bottom: 2rem;
+  }
+  
+  .search-input {
+    flex: 1;
+    padding: 0.75rem;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.5rem;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    outline: none;
+    transition: all 0.2s;
+  }
+  
+  .search-input:focus {
+    border-color: transparent;
+    box-shadow: 0 0 0 2px #000;
+  }
+  
+  .search-button {
+    padding: 0.75rem 1.5rem;
+    background-color: #000;
+    color: white;
+    border: none;
+    border-radius: 0.5rem;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    transition: background-color 0.2s;
+    cursor: pointer;
+  }
+  
+  .search-button:hover {
+    background-color: #1f2937;
+  }
+  
+  .table-container {
+    background-color: white;
+    border-radius: 0.75rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    border: 1px solid #f3f4f6;
+    overflow: hidden;
+  }
+  
+  .table-header {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    padding: 1rem;
+    font-weight: 600;
+    background-color: #f9fafb;
+    border-bottom: 1px solid #e5e7eb;
+  }
+  
+  .table-header-cell {
+    text-align: center;
+  }
+  
+  .table-header-cell:first-child {
+    text-align: left;
+  }
+  
+  .table-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    padding: 1rem;
+    align-items: center;
+    transition: background-color 0.15s;
+  }
+  
+  .table-row:nth-child(even) {
+    background-color: #f9fafb;
+  }
+  
+  .table-row:hover {
+    background-color: #f3f4f6;
+  }
+  
+  .recipe-name {
+    font-weight: 500;
+  }
+  
+  .action-cell {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+  }
+  
+  .action-button {
+    padding: 0.5rem;
+    border: none;
+    background: none;
+    border-radius: 9999px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  
+  .edit-button {
+    color: #4b5563;
+  }
+  
+  .edit-button:hover {
+    background-color: #e5e7eb;
+  }
+  
+  .delete-button {
+    color: #ef4444;
+  }
+  
+  .delete-button:hover {
+    background-color: #fee2e2;
+  }
+  
+  .icon {
+    width: 1.25rem;
+    height: 1.25rem;
+  } 
