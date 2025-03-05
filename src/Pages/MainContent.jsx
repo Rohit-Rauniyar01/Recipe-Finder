@@ -1,11 +1,13 @@
-// src/components/HomeImage.jsx
-// import React from 'react';  // Correct import for React
-import "/src/Styles/MainContent.css";  // Import your CSS file
+import "/src/Styles/MainContent.css";  
+import CategoryPage from "./Category";
 
 const MainContent = () => {
   return (
     <div className="main-content">
-      <img src="src/assets/homeimage.png" alt="Home" className="home-image" />
+      <img src="/src/assets/homeimage.png" alt="Home" className="home-image" />
+      <div className="category-container"> 
+        <CategoryPage /> 
+      </div>
     </div>
   );
 };

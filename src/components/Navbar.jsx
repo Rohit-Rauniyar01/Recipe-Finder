@@ -1,31 +1,78 @@
-import "react";
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import "/src/Styles/Navbar.css";
-// import logo from "src\assets\logo1.png"; // Replace with the path to your logo
 
 function Navbar() {
+  const navigate = useNavigate();
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [showDropdown, setShowDropdown] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  useEffect(() => {
+    const isAdmin = localStorage.getItem("isAdmin") === "true";
+    const isUser = localStorage.getItem("isUser") === "true";
+    setIsLoggedIn(isAdmin || isUser);
+  }, []);
+
+  const handleLogout = () => {
+    localStorage.removeItem("isAdmin");
+    localStorage.removeItem("isUser");
+    setIsLoggedIn(false);
+    navigate("/");
+  };
+
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen);
+  };
+
   return (
     <nav className="navbar">
-      <div className="navbar-logo">
-        <img src="src\assets\logo1.png" alt="Recipe Finder Logo" />
+      <div className="navbar-logo" onClick={() => navigate("/")}>
+        <img src="/src/assets/logo1.png" alt="Recipe Finder Logo" />
       </div>
-      <ul className="navbar-menu">
-        <li>Home</li>
-        <li>Recipe</li>
-        <li>Ingredient</li>
-        <li>Search</li>
-        <li>
-          <button className="signin-button">Sign in</button>
-        </li>
-      </ul>
+      <div className={`navbar-menu ${menuOpen ? "open" : ""}`}>
+        <ul>
+          <li onClick={() => navigate("/")}>Home</li>
+          <li onClick={() => navigate("/recipe")}>Recipe</li>
+          <li onClick={() => navigate("/trending")}>Trending</li>
+          <li onClick={() => navigate("/search")}>Search</li>
+          {!isLoggedIn ? (
+            <li>
+              <button
+                className="signin-button"
+                onClick={() => navigate("/login")}
+              >
+                Sign in
+              </button>
+            </li>
+          ) : (
+            <li
+              className="dropdown"
+              onMouseEnter={() => setShowDropdown(true)}
+              onMouseLeave={() => setShowDropdown(false)}
+            >
+              <img
+                src="/src/assets/avatar.png"
+                alt="User Avatar"
+                className="user-avatar"
+              />
+              {showDropdown && (
+                <ul className="dropdown-menu">
+                  <li onClick={() => navigate("/profile")}>Manage Profile</li>
+                  <li onClick={handleLogout}>Logout</li>
+                </ul>
+              )}
+            </li>
+          )}
+        </ul>
+      </div>
+      <div className="hamburger" onClick={toggleMenu}>
+        <div className="bar"></div>
+        <div className="bar"></div>
+        <div className="bar"></div>
+      </div>
     </nav>
   );
 }
 
 export default Navbar;
-
-
-
-
-// git remote add origin https://github.com/Rohit-Rauniyar01/Recipe-Finder-using-React.git
-// git branch -M main
-// git push -u origin main
