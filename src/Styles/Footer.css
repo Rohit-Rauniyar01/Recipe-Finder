@@ -1,0 +1,85 @@
+body {
+    font-family: Capriola, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Footer Styling */
+  .footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    padding: 20px 40px;
+    border-top: 1px solid black;
+  }
+  
+  /* Logo Container */
+  .footer-logo img {
+    width: 150px;
+  }
+  
+  /* Links Container */
+  .footer-links {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+  }
+  
+  .footer-links a {
+    text-decoration: none;
+    color: black;
+    font-size: 18px;
+    font-weight: bold;
+    margin: 10px 0;
+  }
+  
+  /* Feedback Form */
+  .footer-feedback {
+    max-width: 350px;
+    text-align: left;
+  }
+  
+  .footer-feedback h3 {
+    font-size: 20px;
+    font-weight: bold;
+  }
+  
+  .footer-feedback p {
+    font-size: 14px;
+    margin-bottom: 15px;
+  }
+  
+  .footer-feedback input,
+  .footer-feedback textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid black;
+    border-radius: 5px;
+    font-size: 14px;
+  }
+  
+  .footer-feedback button {
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 8px 15px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  
+  .footer-feedback button:hover {
+    background-color: #e0e0e0;
+  }
+  
+  /* Copyright */
+  .footer-copyright {
+    text-align: center;
+    padding: 10px;
+    font-size: 14px;
+    font-weight: bold;
+    background-color: white;
+    border-top: 1px solid black;
+  }
+  

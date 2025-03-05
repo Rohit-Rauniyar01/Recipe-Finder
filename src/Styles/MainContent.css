@@ -1,16 +1,47 @@
-/* HomeImage styling */
+/* Main Content Container */
 .main-content {
-    margin-top: 70px; /* Adds space below the fixed navbar */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%; /* Ensures the container takes full width */
-    height: 600px; /* Adjust the height as needed */
-    overflow: hidden; /* Prevents any overflow issues */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  height: auto; /* Allows content to expand naturally */
+  padding-top: 80px; /* Avoids overlap with fixed navbar */
+}
+
+/* Home Image Styling */
+.home-image {
+  width: 100%;
+  max-height: 500px; /* Prevents excessive height */
+  object-fit: cover;
+}
+
+/* Adjustments for Category Page inside Main Content */
+.category-section {
+  margin-top: 20px; /* Adds space between the image and categories */
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* Ensures 4 cards per row */
+  gap: 20px;
+  justify-content: center;
+  max-width: 1200px; /* Controls width for a balanced layout */
+}
+
+/* Responsive Adjustments */
+@media (max-width: 1024px) {
+  .category-section {
+    grid-template-columns: repeat(3, 1fr); /* 3 columns on smaller screens */
   }
-  
-  .home-image {
-    width: 100%; /* Ensures the image spans the full width */
-    height: 100%; /* Makes the image cover the full height */
-    object-fit: cover; /* Ensures the image covers the container without distortion */
+}
+
+@media (max-width: 768px) {
+  .category-section {
+    grid-template-columns: repeat(2, 1fr); /* 2 columns for tablets */
   }
+}
+
+@media (max-width: 576px) {
+  .category-section {
+    grid-template-columns: repeat(1, 1fr); /* 1 column for mobile */
+  }
+}
