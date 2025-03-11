@@ -1,0 +1,40 @@
+@import url("https://fonts.googleapis.com/css2?family=Capriola&display=swap");
+
+.our-goals-container {
+    font-family: 'Capriola', sans-serif;
+    background-color: #f8f8f8;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    justify-content: center;
+}
+
+.back-arrow {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 22px;
+    cursor: pointer;
+    color: black;
+}
+
+.content {
+    max-width: 60%;
+    text-align: left;
+    padding: 20px;
+}
+
+h2 {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+p {
+    font-size: 18px;
+    color: #333;
+    line-height: 1.6;
+}
