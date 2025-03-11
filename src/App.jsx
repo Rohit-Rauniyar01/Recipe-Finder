@@ -1,4 +1,4 @@
-import React from "react";
+import  "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import HomePage from "./Pages/HomeSection/HomePage"; 
 import RecipeListPage from "./Pages/HomeSection/ReceipeListPage"; 
