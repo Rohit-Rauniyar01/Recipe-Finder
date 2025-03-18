@@ -1,0 +1,146 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    overflow: hidden;
+  }
+  
+  .back-container {
+    width: 100%;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+  }
+  
+  .back-container a {
+    text-decoration: none;
+    color: black;
+    font-size: 22px;
+  }
+  
+  .setting-container {
+    margin-top: -15%;
+    text-align: center;
+  }
+  
+  h2 {
+    font-size: 30px;
+  }
+  
+  .main-container {
+    width: 350px;
+  }
+  
+  h3 {
+    text-align: center;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .form-group input {
+    text-align: center;
+    width: 100%;
+    padding: 8px;
+    font-size: 15px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    height: 35px;
+  }
+  
+  .btn-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  
+  .btn {
+    width: 60%;
+    padding: 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 18px;
+    height: 50px;
+  }
+  
+  .btn:hover {
+    background-color: #0056b3;
+  }
+  
+  .popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    display: block;
+    opacity: 1;
+    animation: fadeIn 0.3s forwards;
+  }
+  
+  .popup h4 {
+    margin: 0;
+    font-size: 20px;
+    color: #333;
+  }
+  
+  .popup.success {
+    border-left: 5px solid #28a745;
+  }
+  
+  .popup.error {
+    border-left: 5px solid #dc3545;
+  }
+  
+  .popup i {
+    font-size: 40px;
+    margin-bottom: 10px;
+  }
+  
+  .popup.success i {
+    color: #28a745;
+  }
+  
+  .popup.error i {
+    color: #dc3545;
+  }
+  
+  .popup button {
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+  
+  .popup button:hover {
+    background: #0056b3;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translate(-50%, -55%);
+    }
+    to {
+      opacity: 1;
+      transform: translate(-50%, -50%);
+    }
+  }
+  
