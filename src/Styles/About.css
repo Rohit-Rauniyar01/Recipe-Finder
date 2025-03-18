@@ -1,0 +1,94 @@
+@import url("https://fonts.googleapis.com/css2?family=Capriola&family=Poppins:wght@300;400;600&display=swap");
+
+.about-us-container {
+    font-family: 'Poppins', sans-serif;
+    background-color: #ffffff;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+.back-arrow {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-size: 22px;
+    cursor: pointer;
+    color: white;
+    padding: 10px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.6);
+    transition: background 0.3s;
+}
+
+.back-arrow:hover {
+    background: rgba(0, 0, 0, 0.8);
+}
+
+.hero {
+    width: 100%;
+    height: 350px;
+    background: url('https://as2.ftcdn.net/v2/jpg/07/72/54/07/1000_F_772540791_QKWmQ2gI4Yv6YYvZv8lqVg4bDKGoxgFZ.jpg') center/cover no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    position: relative;
+}
+
+.hero h1 {
+    font-size: 40px;
+    font-weight: 600;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);
+}
+
+.content {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.content h2 {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.content p {
+    font-size: 18px;
+    color: #555;
+    line-height: 1.8;
+}
+
+.icon-section {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 30px;
+}
+
+.icon-box {
+    text-align: center;
+    max-width: 300px;
+}
+
+.icon {
+    font-size: 50px;
+    color: #007bff;
+    margin-bottom: 10px;
+}
+
+.icon-box h4 {
+    font-size: 20px;
+    color: #333;
+    margin: 10px 0 5px;
+}
+
+.icon-box p {
+    font-size: 16px;
+    color: #777;
+}
