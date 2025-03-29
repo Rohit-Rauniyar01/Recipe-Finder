@@ -14,7 +14,7 @@ const Login = () => {
     setError("");
 
     // Check for admin credentials
-    if (username === "admin" && password === "admin123") {
+    if (username === "admin" && password === "123") {
       // Store admin status in localStorage
       localStorage.setItem("isAdmin", "true");
       localStorage.setItem("user", JSON.stringify({ username: "admin", role: "admin" }));

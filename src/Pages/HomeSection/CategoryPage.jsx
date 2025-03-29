@@ -1,62 +1,10 @@
-// import React, { useState, useEffect } from "react";
-// import axios from "axios";
-// import "../../styles/RecipePage.css"; // Import CSS file
 
-// const RecipePage = () => {
-//   const [recipe, setRecipe] = useState({ name: "", imageUrl: "" });
 
-//   useEffect(() => {
-//     let isMounted = true;
-
-//     const fetchRecipe = async () => {
-//       try {
-//         const response = await axios.get("https://www.themealdb.com/api/json/v1/1/search.php?s=Arrabiata");
-//         if (isMounted && response.data.meals) {
-//           const meal = response.data.meals[0]; // Extract first meal
-//           setRecipe({
-//             name: meal.strMeal, // Fetch recipe name
-//             imageUrl: meal.strMealThumb, // Fetch recipe image
-//           });
-//         }
-//       } catch (error) {
-//         console.error("Error fetching the recipe:", error);
-//       }
-//     };
-
-//     fetchRecipe();
-
-//     return () => {
-//       isMounted = false;
-//     };
-//   }, []);
-
-//   return (
-//     <div className="recipe-card">
-//       {/* Upper part - Image */}
-//       <div className="recipe-image">
-//         {recipe.imageUrl ? (
-//           <img src={recipe.imageUrl} alt={recipe.name} />
-//         ) : (
-//           <p className="loading-text">Loading...</p>
-//         )}
-//       </div>
-
-//       {/* Lower part - Recipe Name */}
-//       <div className="recipe-text">
-//         {recipe.name ? recipe.name : "Loading..."}
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default RecipePage;
-
-import React from "react";
+// import React from "react";
 import { useNavigate } from "react-router-dom";
-import "../../styles/ReceipeListPage.css";
 import "../../Styles/CategoryPage.css";
 
-const CategoryPage = () => {
+ const CategoryPage = () => {
   const navigate = useNavigate();
 
   // List of categories with images
@@ -88,7 +36,7 @@ const CategoryPage = () => {
         ))}
       </div>
     </div>
-  );
+  ); 
 };
 
 export default CategoryPage;

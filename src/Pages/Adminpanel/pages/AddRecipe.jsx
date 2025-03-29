@@ -1,7 +1,10 @@
-import React, { useState } from 'react';
-import { Box, Button, TextField, Typography, Container, FormControl, InputLabel, Select, MenuItem, Paper } from '@mui/material';
+// import React from 'react';
+import { useState } from 'react';
+import PropTypes from 'prop-types';
+import { Box, Button, TextField, Typography, Container, FormControl, InputLabel, Select, MenuItem, Paper, Snackbar, Alert } from '@mui/material';
+import { categories } from "./Categories";
 
-const AddRecipe = () => {
+const AddRecipe = ({ addRecipe }) => {
   const [formData, setFormData] = useState({
     name: '',
     category: '',
@@ -10,6 +13,11 @@ const AddRecipe = () => {
     instructions: ''
   });
   const [imagePreview, setImagePreview] = useState(null);
+  const [snackbar, setSnackbar] = useState({
+    open: false,
+    message: '',
+    severity: 'success'
+  });
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -36,11 +44,82 @@ const AddRecipe = () => {
     }
   };
 
-  const handleSubmit = (e) => {
+  const resetForm = () => {
+    setFormData({
+      name: '',
+      category: '',
+      image: null,
+      ingredients: '',
+      instructions: ''
+    });
+    setImagePreview(null);
+  };
+
+  const handleCloseSnackbar = () => {
+    setSnackbar({ ...snackbar, open: false });
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Here you would typically send the data to your backend
-    console.log(formData);
-    // TODO: Implement API call to save recipe
+    
+    // Validate form data
+    if (!formData.name || !formData.category || !formData.ingredients || !formData.instructions) {
+      setSnackbar({
+        open: true,
+        message: 'Please fill in all required fields',
+        severity: 'error'
+      });
+      return;
+    }
+
+    const formDataToSend = new FormData();
+    formDataToSend.append('name', formData.name.trim());
+    formDataToSend.append('category', formData.category.trim());
+    formDataToSend.append('ingredients', formData.ingredients.trim());
+    formDataToSend.append('instructions', formData.instructions.trim());
+    if (formData.image) {
+      formDataToSend.append('image', formData.image);
+    }
+
+    try {
+      setSnackbar({
+        open: true,
+        message: 'Adding recipe...',
+        severity: 'info'
+      });
+
+      const response = await fetch('http://localhost:5000/api/recipes', {
+        method: 'POST',
+        body: formDataToSend,
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        console.log('Recipe added successfully:', data);
+        addRecipe(data);
+        resetForm();
+        setSnackbar({
+          open: true,
+          message: 'Recipe added successfully!',
+          severity: 'success'
+        });
+      } else {
+        console.error('Server error:', data);
+        setSnackbar({
+          open: true,
+          message: data.message || 'Failed to add recipe. Please try again.',
+          severity: 'error'
+        });
+      }
+    } catch (error) {
+      console.error('Network error:', error);
+      setSnackbar({
+        open: true,
+        message: 'Network error. Please check your connection and try again.',
+        severity: 'error'
+      });
+    }
   };
 
   return (
@@ -71,11 +150,11 @@ const AddRecipe = () => {
                 onChange={handleInputChange}
                 required
               >
-                <MenuItem value="breakfast">Breakfast</MenuItem>
-                <MenuItem value="lunch">Lunch</MenuItem>
-                <MenuItem value="dinner">Dinner</MenuItem>
-                <MenuItem value="dessert">Dessert</MenuItem>
-                <MenuItem value="snack">Snack</MenuItem>
+                {categories.map((category) => (
+                  <MenuItem key={category.value} value={category.value}>
+                    {category.label}
+                  </MenuItem>
+                ))}
               </Select>
             </FormControl>
 
@@ -117,7 +196,8 @@ const AddRecipe = () => {
               multiline
               rows={4}
               required
-              placeholder="Enter ingredients (one per line)"
+              placeholder="Format: Ingredient:Amount (one per line)&#10;Example:&#10;Strawberry:500g&#10;Sugar:1kg"
+              helperText="Enter each ingredient with amount on a new line"
             />
 
             <TextField
@@ -130,7 +210,7 @@ const AddRecipe = () => {
               multiline
               rows={4}
               required
-              placeholder="Enter cooking instructions"
+              placeholder="Enter each instruction step on a new line"
             />
 
             <Button
@@ -146,8 +226,27 @@ const AddRecipe = () => {
           </form>
         </Paper>
       </Box>
+      <Snackbar 
+        open={snackbar.open} 
+        autoHideDuration={6000} 
+        onClose={handleCloseSnackbar}
+        anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+      >
+        <Alert 
+          onClose={handleCloseSnackbar} 
+          severity={snackbar.severity}
+          variant="filled"
+          sx={{ width: '100%' }}
+        >
+          {snackbar.message}
+        </Alert>
+      </Snackbar>
     </Container>
   );
+};
+
+AddRecipe.propTypes = {
+  addRecipe: PropTypes.func.isRequired
 };
 
 export default AddRecipe;

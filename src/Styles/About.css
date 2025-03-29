@@ -1,0 +1,114 @@
+.about-us-container {
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f9f9f9;
+    padding: 50px 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-align: center;
+    gap: 30px;
+}
+
+.about-us-container h2 {
+    font-size: 2.5rem;
+    color: #333;
+    margin-bottom: 20px;
+    position: relative;
+    padding-bottom: 15px;
+}
+
+.about-us-container h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90px;
+    height: 4px;
+    background-color: #f4a261;
+    border-radius: 2px;
+}
+
+.about-us-container p {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    color: #444;
+    margin-bottom: 35px;
+    
+}
+
+.icon-section {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 120px;
+    margin-top: 40px;
+}
+
+.icon-box {
+    flex: 1;
+    min-width: 280px;
+    max-width: 380px;
+    padding: 25px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.icon-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+}
+
+.icon {
+    font-size: 3rem;
+    color: #f4a261;
+    margin-bottom: 15px;
+}
+
+.icon-box h4 {
+    font-size: 1.4rem;
+    color: #222;
+    margin-bottom: 10px;
+}
+
+.icon-box p {
+    font-size: 1rem;
+    color: #666;
+    line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+    .about-us-container {
+        padding: 40px 25px;
+    }
+    .about-us-container h2 {
+        font-size: 2rem;
+    }
+    .icon-section {
+        flex-direction: column;
+        align-items: center;
+    }
+    .icon-box {
+        width: 90%;
+    }
+}
+
+@media (max-width: 480px) {
+    .about-us-container h2 {
+        font-size: 1.7rem;
+    }
+    .about-us-container p {
+        font-size: 1.1rem;
+    }
+    .icon-box h4 {
+        font-size: 1.2rem;
+    }
+    .icon-box p {
+        font-size: 0.95rem;
+    }
+}

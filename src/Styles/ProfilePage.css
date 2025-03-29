@@ -5,9 +5,9 @@ body {
     font-family: Arial, sans-serif;
     background-color: #f3f4f6;
     overflow: hidden;
-  }
-  
-  .profile-container {
+}
+
+.profile-container {
     width: 100%;
     height: 100vh;
     display: flex;
@@ -16,39 +16,39 @@ body {
     justify-content: center;
     background-color: #f3f4f6;
     padding: 24px;
-  }
-  
-  /* Back Button */
-  .back-button {
+}
+
+/* Back Button */
+.back-button {
     position: absolute;
     top: 20px;
     left: 20px;
     font-size: 28px;
     cursor: pointer;
     transition: color 0.2s;
-  }
-  
-  .back-button:hover {
+}
+
+.back-button:hover {
     color: #4b5563;
-  }
-  
-  /* Profile Avatar and Name */
-  .avatar {
+}
+
+/* Profile Avatar and Name */
+.avatar {
     width: 120px !important;
     height: 120px !important;
     border: 3px solid #9ca3af;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
-  .user-name {
+}
+
+.user-name {
     margin-top: 16px;
     font-size: 24px;
     font-weight: 700;
     color: #1f2937;
-  }
-  
-  /* Menu Items */
-  .menu-container {
+}
+
+/* Menu Items */
+.menu-container {
     margin-top: 24px;
     width: 80%;
     display: flex;
@@ -59,9 +59,9 @@ body {
     border-radius: 16px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     gap: 16px;
-  }
-  
-  .menu-item {
+}
+
+.menu-item {
     display: flex;
     align-items: center;
     gap: 16px;
@@ -70,18 +70,18 @@ body {
     font-size: 20px;
     cursor: pointer;
     transition: background-color 0.2s, color 0.2s;
-  }
-  
-  .menu-item:hover {
+}
+
+.menu-item:hover {
     background-color: #f3f4f6;
-  }
-  
-  .menu-item.highlight {
+}
+
+.menu-item.highlight {
     color: black;
     font-size: 20px;
-  }
-  
-  .menu-item-icon {
+}
+
+.menu-item-icon {
     font-size: 24px;
-  }
+}
   

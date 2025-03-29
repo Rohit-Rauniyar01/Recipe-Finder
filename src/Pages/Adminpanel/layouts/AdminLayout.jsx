@@ -8,7 +8,7 @@ const AdminLayout = () => {
     localStorage.removeItem('isAdmin');
     localStorage.removeItem('user');
     navigate('/login');
-  };
+  }; 
 
   return (
     <div className="admin-layout">
@@ -20,7 +20,7 @@ const AdminLayout = () => {
             <button onClick={() => navigate('/admin')}>Dashboard</button>
           </li>
           <li>
-            <button onClick={() => navigate('/admin/recipes/add')}>Add Recipe</button>
+            <button onClick={() => navigate('/admin/recipes/add')}>Add Recipes</button>
           </li>
           <li>
             <button onClick={() => navigate('/admin/recipes/list')}>List Recipes</button>

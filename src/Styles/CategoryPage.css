@@ -12,7 +12,7 @@
 /* Category Grid - Ensures 4 Cards in One Row */
 .category-section {
   display: grid;
-  grid-template-columns: repeat(4, minmax(380px, 1fr)); /* 4 cards per row */
+  grid-template-columns: repeat(4, minmax(360px, 1fr)); /* 4 cards per row */
   gap: 100px; /* Proper spacing between cards */
   max-width: 1000px; /* Limits width for professional look */
   padding: 20px;
@@ -23,8 +23,8 @@
 .category-card {
   cursor: pointer;
   text-align: center;
-  /* border: 1px solid #ddd; */
-  /* border-radius: 10px; */
+  border: 1px solid #ddd;
+  border-radius: 10px;
   transition: 0.3s ease-in-out;
   height: 320px;
   width: 100%;

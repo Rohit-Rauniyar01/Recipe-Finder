@@ -1,91 +1,94 @@
-/* HomeImage styling */
-.body{
-margin: 0;
-padding: 0;
+body {
+    margin: 0;
+    padding: 0;
+    /* box-sizing: border-box; */
+    font-family: Arial, sans-serif;
+    overflow-x: hidden;
+    /* width: 100%; */
+    /* background-color: red; */
 }
-.main-content{
-  height: 1500px;
+
+.main-containerbox {
+    /* width:9000px; */
+    /* background-color: rgb(17, 0, 255); */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+     height: auto;
+    width: 100%;
 }
-.MainPage{
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.main-content {
-  /* background-color: #F11B4A; */
-  /* margin-top: 70px; Adds space below the fixed navbar */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 1800px; /* Ensures the container takes full width */
-  height: 600px; /* Adjust the height as needed */
-  position: relative; /* Necessary for positioning the overlay card */
-  overflow: hidden; /* Prevents any overflow issues */
+
+.image-container {
+    width: 100vw;
+    height: 70vh;
+    position: relative;
+    text-align: center;
+    overflow: hidden;
 }
 
 .home-image {
-  width: 100%; /* Ensures the image spans the full width */
-  height: 100%; /* Makes the image cover the full height */
-  object-fit: cover; /* Ensures the image covers the container without distortion */
+    width: 100%;
+    height: 100%;
+    /* background-color: yellow; */
+    object-fit: cover;
 }
 
 .overlay-card {
-  position: absolute;
-  top: 50%; /* Position vertically at the center */
-  left: 50%; /* Position horizontally at the center */
-  transform: translate(-50%, -50%); /* Adjust the card to truly center it */
-  width: 80%; /* Use percentage for responsive design */
-  max-width: 1600px; /* Maximum width of the card */
-  height: 340px; /* Adjust height as needed */
-  background-color: #F11B4A; /* Add a solid background */
-  padding: 20px;
-  border-radius: 8px; /* Optional: Add rounded corners */
-  color: white; /* Text color */
-  display: flex; /* Apply flexbox */
-  flex-direction: column; /* Stack the content vertically */
-  justify-content: center; /* Vertically center the content */
-  align-items: flex-start; /* Align items to the left */
-  text-align: left; /* Align text to the left */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(207, 27, 63, 0.9); 
+    padding: 25px;
+    border-radius: 12px;
+    color: white;
+    height: 50%;
+    width: 80%;
+    max-width: 1800px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .card-text {
-  display: flex;
-  margin-left: 110px;
-  flex-direction: column; /* Ensure text content is stacked vertically */
-  align-items: flex-start; /* Align text to the left */
+    margin-left: 80px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
 }
 
-.overlay-card h2,
-.overlay-card p {
-  margin: 0;
-  text-align: left; /* Ensure text starts from left */
+.card-text h2 {
+    text-align: left ;
+    font-size: 2.8rem;
+    margin-bottom: 10px;
+    margin-left: 0;
+    color: white;
 }
 
-.overlay-card h2 {
-  font-size: 50px;
-  color: white; /* Adjust font size as needed */
+.card-text p {
+    text-align: left;
+    font-size: 1.8rem;
+    line-height: 1.5;
+    margin-top: 10px;
+    margin-left: 0;
+    width: 60% ;
 }
 
-.overlay-card p {
-  font-size: 36px; /* Adjust font size as needed */
-}
+
 .middle-text {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 90px; /* Centers content vertically */
-  text-align: center; /* Centers text */
+    text-align: center;
+    margin: 40px 20px;
+    color: #333;
 }
 
 .middle-text h3 {
-  font-weight: bold;
-  font-size: 28px;
-  margin-bottom: 5px; /* Reduce gap between h3 and p */
+    font-size: 1.8rem;
+    margin-bottom: 10px;
 }
 
 .middle-text p {
-  font-size: 22px;
-  margin-top: 0; /* Ensure no extra margin on top */
+    font-size: 1.2rem;
+    max-width: 600px;
+    margin: 0 auto;
 }

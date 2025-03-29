@@ -1,6 +1,5 @@
-import React from "react";
+import "../Styles/Navbar.css";
 import { useNavigate } from "react-router-dom";
-import "/src/Styles/Navbar.css";
 
 function Navbar() {
   const navigate = useNavigate();
@@ -13,10 +12,11 @@ function Navbar() {
       <ul className="navbar-menu">
         <li onClick={() => navigate("/")}>Home</li>
         <li onClick={() => navigate("/recipes")}>Recipe</li>
-        <li onClick={() => navigate("/ingredients")}>Ingredient</li>
+        <li onClick={() => navigate("/trending")}>Trending</li>
         <li onClick={() => navigate("/search")}>Search</li>
+        <li onClick={() => navigate("/profile")}>Profile</li>
         <li>
-          <button className="signin-button" onClick={() => navigate("/login")}> {/* Fixed path to lowercase */}
+          <button className="signin-button" onClick={() => navigate("/login")}>
             Sign in
           </button>
         </li>
