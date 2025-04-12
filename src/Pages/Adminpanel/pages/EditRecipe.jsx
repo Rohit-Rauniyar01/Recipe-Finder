@@ -1,9 +1,13 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import '../styles/AddRecipe.css';
+import '../styles/EditRecipe.css';
 import { categories } from "./Categories";
 
-const AddRecipe = ({ addRecipe = () => {} }) => {
+const EditRecipe = () => {
+  const { id } = useParams();
+  const navigate = useNavigate();
+  
   const [formData, setFormData] = useState({
     name: '',
     category: '',
@@ -17,6 +21,47 @@ const AddRecipe = ({ addRecipe = () => {} }) => {
     message: '',
     severity: 'success'
   });
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  // Fetch recipe data when component mounts
+  useEffect(() => {
+    const fetchRecipe = async () => {
+      try {
+        setLoading(true);
+        // Replace with your actual API endpoint
+        const response = await fetch(`http://localhost:5000/api/recipes/${id}`);
+        
+        if (!response.ok) {
+          throw new Error('Failed to fetch recipe');
+        }
+        
+        const data = await response.json();
+        
+        // Populate form with recipe data
+        setFormData({
+          name: data.name || '',
+          category: data.category || '',
+          image: null, // Can't set File object from API response
+          ingredients: data.ingredients || '',
+          instructions: data.instructions || ''
+        });
+        
+        // Set image preview if available
+        if (data.image_url) {
+          setImagePreview(data.image_url);
+        }
+        
+        setLoading(false);
+      } catch (error) {
+        console.error('Error fetching recipe:', error);
+        setError('Failed to load recipe. Please try again.');
+        setLoading(false);
+      }
+    };
+
+    fetchRecipe();
+  }, [id]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -41,17 +86,6 @@ const AddRecipe = ({ addRecipe = () => {} }) => {
       };
       reader.readAsDataURL(file);
     }
-  };
-
-  const resetForm = () => {
-    setFormData({
-      name: '',
-      category: '',
-      image: null,
-      ingredients: '',
-      instructions: ''
-    });
-    setImagePreview(null);
   };
 
   const handleCloseSnackbar = () => {
@@ -90,19 +124,20 @@ const AddRecipe = ({ addRecipe = () => {} }) => {
     try {
       setSnackbar({
         open: true,
-        message: 'Adding recipe...',
+        message: 'Updating recipe...',
         severity: 'info'
       });
 
       // Add console logs to debug the request
-      console.log('Sending recipe data:', {
+      console.log('Sending updated recipe data:', {
         name: formData.name,
         category: formData.category,
         hasImage: !!formData.image
       });
 
-      const response = await fetch('http://localhost:5000/api/recipes', {
-        method: 'POST',
+      // Use PUT or PATCH method for updating
+      const response = await fetch(`http://localhost:5000/api/recipes/${id}`, {
+        method: 'PUT',
         body: formDataToSend,
       });
 
@@ -111,19 +146,22 @@ const AddRecipe = ({ addRecipe = () => {} }) => {
       console.log('Response data:', data);
 
       if (response.ok) {
-        console.log('Recipe added successfully:', data);
-        if (addRecipe) addRecipe(data.recipe);
-        resetForm();
+        console.log('Recipe updated successfully:', data);
         setSnackbar({
           open: true,
-          message: 'Recipe added successfully!',
+          message: 'Recipe updated successfully!',
           severity: 'success'
         });
+        
+        // Navigate back to recipe list after successful update
+        setTimeout(() => {
+          navigate('/admin/recipes');
+        }, 2000);
       } else {
         console.error('Server error:', data);
         setSnackbar({
           open: true,
-          message: data.message || 'Failed to add recipe. Please try again.',
+          message: data.message || 'Failed to update recipe. Please try again.',
           severity: 'error'
         });
       }
@@ -137,10 +175,22 @@ const AddRecipe = ({ addRecipe = () => {} }) => {
     }
   };
 
+  const handleCancel = () => {
+    navigate('/admin/recipes');
+  };
+
+  if (loading) {
+    return <div className="loading-message">Loading recipe data...</div>;
+  }
+
+  if (error) {
+    return <div className="error-message">{error}</div>;
+  }
+
   return (
-    <div className="add-recipe-container">
+    <div className="edit-recipe-container">
       <div className="recipe-form-card">
-        <h1 className="form-title">Add New Recipe</h1>
+        <h1 className="form-title">Edit Recipe</h1>
         
         <form onSubmit={handleSubmit}>
           <div className="form-group">
@@ -191,7 +241,7 @@ const AddRecipe = ({ addRecipe = () => {} }) => {
                   className="upload-button" 
                   onClick={() => document.getElementById('image-upload').click()}
                 >
-                  Upload Image
+                  {imagePreview ? 'Change Image' : 'Upload Image'}
                 </button>
               </label>
             </div>
@@ -238,16 +288,16 @@ const AddRecipe = ({ addRecipe = () => {} }) => {
           <div className="form-actions">
             <button
               type="button"
-              className="reset-button"
-              onClick={resetForm}
+              className="cancel-button"
+              onClick={handleCancel}
             >
-              Reset
+              Cancel
             </button>
             <button
               type="submit"
               className="submit-button"
             >
-              Add Recipe
+              Update Recipe
             </button>
           </div>
         </form>
@@ -262,8 +312,4 @@ const AddRecipe = ({ addRecipe = () => {} }) => {
   );
 };
 
-AddRecipe.propTypes = {
-  addRecipe: PropTypes.func
-};
-
-export default AddRecipe;
+export default EditRecipe;

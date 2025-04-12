@@ -19,13 +19,14 @@ import AdminLayout from "./Pages/Adminpanel/layouts/AdminLayout";
 import Dashboard from "./Pages/Adminpanel/pages/Dashboard";
 import AddRecipe from "./Pages/Adminpanel/pages/AddRecipe";
 import RecipeList from "./Pages/Adminpanel/pages/RecipeList";
+import AdminLogin from "./Pages/Adminpanel/pages/AdminLogin";
 import ProtectedAdminRoute from "./components/ProtectedAdminRoute";
 import Trending from "./Pages/HomeSection/Trending";
 import RecipePage from "./Pages/HomeSection/RecipePage";
 import Search from "./Pages/HomeSection/Search";
 import FeedbackSection from "./components/FeedbackSection";
 
-import "./Styles/App.css";
+// import "./Styles/App.css";
 
 // NavbarWrapper component to conditionally render Navbar
 const NavbarWrapper = () => {
@@ -51,6 +52,9 @@ const FeedbackWrapper = () => {
   return isAdminRoute || isAuthPage || isProfileRoute ? null : <FeedbackSection />;
 };
 
+// Add this import
+import ProtectedRoute from './components/ProtectedRoute';
+
 const App = () => {
   return (
     <Router>
@@ -58,6 +62,7 @@ const App = () => {
       <div className="content">
         <Routes>
           {/* Admin Routes */}
+          <Route path="/admin/login" element={<AdminLogin />} />
           <Route element={<ProtectedAdminRoute />}>
             <Route path="/admin" element={<AdminLayout />}>
               <Route index element={<Dashboard />} />
@@ -76,14 +81,16 @@ const App = () => {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
 
-          {/* Profile Routes */}
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/profile/edit" element={<EditName />} />
-          <Route path="/favorites" element={<Favourites />} />
-          <Route path="/goals" element={<Goals />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/support" element={<Supports />} />
-          <Route path="/settings" element={<Settings />} />
+          {/* Protected Profile Routes */}
+          <Route element={<ProtectedRoute />}>
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/profile/edit" element={<EditName />} />
+            <Route path="/favorites" element={<Favourites />} />
+            <Route path="/goals" element={<Goals />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/support" element={<Supports />} />
+            <Route path="/settings" element={<Settings />} />
+          </Route>
         </Routes>
       </div>
       <FeedbackWrapper />

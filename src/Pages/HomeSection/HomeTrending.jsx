@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import "../../Styles/RecipeListPage.css";
+import "../../Styles/HomeTrending.css";
 
 const BASE_URL = "http://localhost:5000";
 
-const Trending = () => {
+const HomeTrending = () => {
   const navigate = useNavigate();
   const [recipes, setRecipes] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -21,12 +21,11 @@ const Trending = () => {
     const fetchRecipes = async () => {
       try {
         setLoading(true);
-        // Just fetch regular recipes without any sorting or trending logic
         const response = await axios.get(`${BASE_URL}/api/recipes`);
         
         if (response.data && Array.isArray(response.data)) {
-          // Just take the first 6 recipes without any special sorting
-          setRecipes(response.data.slice(0, 6 ));
+          // Take only the first 3 recipes for HomeTrending
+          setRecipes(response.data.slice(0, 3));
         } else {
           setRecipes([]);
         }
@@ -70,15 +69,19 @@ const Trending = () => {
   };
 
   return (
-    <div className="recipe-list">
-      <h1 className="category-title">Trending Recipes</h1>
+    <div className="home-trending-list">
+      <div className="home-trending-title1">
+      <h1 className="home-trending-title">Trending Recipes</h1>
+      <p onClick={() => navigate("/trending")}>More</p>
+      </div>
+      
       
       {loading ? (
         <p>⏳ Loading recipes...</p>
       ) : error ? (
-        <p className="error">{error}</p>
+        <p className="home-trending-error">{error}</p>
       ) : recipes.length > 0 ? (
-        <div className="recipe-cards-containerbox">
+        <div className="home-trending-cards-container">
           {recipes.map((recipe) => {
             const imageUrl =
               imgErrors[recipe.id] || !recipe.image_url
@@ -89,20 +92,20 @@ const Trending = () => {
 
             return (
               <div
-                className="recipe-cardbox1"
+                className="home-trending-card"
                 key={recipe.id}
                 onClick={() => handleRecipeClick(recipe.id)}
               >
                 {/* Favorite Heart Icon */}
                 <div 
-                  className={`favorite-icon ${isFavorite(recipe.id) ? 'favorited' : ''}`}
+                  className={`home-trending-favorite-icon ${isFavorite(recipe.id) ? 'home-trending-favorited' : ''}`}
                   onClick={(e) => toggleFavorite(e, recipe)}
                 >
                   ❤
                 </div>
 
                 {/* Image Container */}
-                <div className="image-containerbox">
+                <div className="home-trending-image-container">
                   <img
                     src={imageUrl}
                     alt={recipe.name}
@@ -111,7 +114,7 @@ const Trending = () => {
                 </div>
 
                 {/* Recipe Name */}
-                <div className="recipe-name">{recipe.name}</div>
+                <div className="home-trending-recipe-name">{recipe.name}</div>
               </div>
             );
           })}
@@ -123,4 +126,4 @@ const Trending = () => {
   );
 };
 
-export default Trending;
+export default HomeTrending;

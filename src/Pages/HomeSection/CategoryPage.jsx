@@ -1,19 +1,10 @@
-
-
 // import React from "react";
 import { useNavigate } from "react-router-dom";
 import "../../Styles/CategoryPage.css";
+import { categories } from "../../Pages/Adminpanel/pages/Categories";
 
- const CategoryPage = () => {
+const CategoryPage = () => {
   const navigate = useNavigate();
-
-  // List of categories with images
-  const categories = [
-    { name: "Vegetarian", image: "https://www.themealdb.com/images/category/vegetarian.png" },
-    { name: "Chicken", image: "https://www.themealdb.com/images/category/chicken.png" },
-    { name: "Seafood", image: "https://www.themealdb.com/images/category/seafood.png" },
-    { name: "Dessert", image: "https://www.themealdb.com/images/category/Dessert.png" },
-  ];
 
   const handleCategoryClick = (categoryName) => {
     // Navigate to the RecipeListPage with the selected category in the URL

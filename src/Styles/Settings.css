@@ -1,60 +1,61 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
-.change-password-container {
+/* Settings container styles */
+.settings-container {
+  /* margin-top: 80px; */
   font-family: 'Poppins', sans-serif;
   max-width: 600px;
   margin: 0 auto;
   padding: 20px;
   position: relative;
-  min-height: 80px;
+  min-height: 80vh;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.back-container {
-  position: absolute;
-  top: 20px;
-  left: 20px;
-}
-
-.back-container a {
-  color: #333;
-  font-size: 24px;
-  text-decoration: none;
-}
-
-.setting-container {
-  margin-top: 60px;
+/* Settings header styles */
+.settings-header {
+  margin-top: 20px;
   margin-bottom: 30px;
   text-align: center;
   width: 100%;
 }
 
-.setting-container h2 {
+.settings-header h2 {
   font-size: 28px;
   font-weight: 600;
   color: #333;
 }
 
-.main-container {
+/* Settings section styles */
+.settings-section {
   background-color: #fff;
   border-radius: 10px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   padding: 30px;
   width: 100%;
   max-width: 450px;
+  margin-top: 120px;
 }
 
-.main-container h3 {
+.settings-section h3 {
   font-size: 22px;
   margin-bottom: 25px;
   color: #333;
   text-align: center;
 }
 
+/* Form styles */
 .form-group {
   margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+  color: #333;
 }
 
 .form-group input {
@@ -69,6 +70,11 @@
 .form-group input:focus {
   border-color: #ff6b6b;
   outline: none;
+}
+
+.form-group input:disabled {
+  background-color: #f5f5f5;
+  cursor: not-allowed;
 }
 
 .btn-container {
@@ -93,43 +99,97 @@
   background-color: #ff5252;
 }
 
+.btn:disabled {
+  background-color: #ffb3b3;
+  cursor: not-allowed;
+}
+
+/* Back button styles */
+.back-button {
+  margin-top: 20px;
+  color: #555;
+  cursor: pointer;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  transition: color 0.3s;
+}
+
+.back-button:hover {
+  color: #ff6b6b;
+  text-decoration: underline;
+}
+
 /* Popup styles */
 .popup {
   position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.popup-content {
   background-color: white;
   padding: 25px;
   border-radius: 10px;
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
   text-align: center;
-  z-index: 1000;
   width: 90%;
   max-width: 350px;
+  position: relative;
 }
 
-.popup i {
-  font-size: 40px;
-  margin-bottom: 15px;
+.popup-icon {
+  display: block;
+  width: 50px;
+  height: 50px;
+  margin: 0 auto 15px;
+  border-radius: 50%;
+  position: relative;
 }
 
-.popup.success i {
+.popup-icon.success {
+  background-color: #e8f5e9;
+}
+
+.popup-icon.success:before {
+  content: '✓';
   color: #4CAF50;
+  font-size: 30px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
-.popup.error i {
+.popup-icon.error {
+  background-color: #ffebee;
+}
+
+.popup-icon.error:before {
+  content: '✕';
   color: #f44336;
+  font-size: 30px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
-.popup h4 {
+.popup p {
   font-size: 18px;
   margin-bottom: 20px;
   color: #333;
 }
 
 .popup button {
-  background-color: #333;
+  background-color: #ff6b6b;
   color: white;
   border: none;
   border-radius: 5px;
@@ -140,24 +200,37 @@
 }
 
 .popup button:hover {
-  background-color: #555;
+  background-color: #ff5252;
+}
+
+/* Error and success message styles */
+.error-message {
+  color: #f44336;
+  margin-top: 5px;
+  font-size: 14px;
+}
+
+.success-message {
+  color: #4CAF50;
+  margin-top: 5px;
+  font-size: 14px;
 }
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
-  .change-password-container {
+  .settings-container {
     padding: 15px;
   }
   
-  .main-container {
+  .settings-section {
     padding: 20px;
   }
   
-  .setting-container h2 {
+  .settings-header h2 {
     font-size: 24px;
   }
   
-  .main-container h3 {
+  .settings-section h3 {
     font-size: 20px;
   }
 }

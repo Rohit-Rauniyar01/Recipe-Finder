@@ -1,4 +1,5 @@
 import CategoryPage from "./CategoryPage";
+import HomeTrending from "./HomeTrending";
 import "../../Styles/MainContent.css";
 import homeImage from "/src/assets/homeimage.png";
 
@@ -23,7 +24,7 @@ const MainContent = () => {
         <p>Discover new recipes based on what you already have.</p>
       </div>
       <CategoryPage />
-       
+       <HomeTrending />
     </div>
   );
 };

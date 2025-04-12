@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { Container, TextField, Button, Grid, Typography, Card, CardMedia, CardContent, CardActionArea, Chip } from "@mui/material";
+import { Container, TextField, Button, Typography, Chip } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 import "../../Styles/Search.css";
 
 const BASE_URL = "http://localhost:5000";
@@ -11,9 +12,9 @@ const Search = () => {
   const [recentSearches, setRecentSearches] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [imgErrors, setImgErrors] = useState({});
   const navigate = useNavigate();
 
-  // Load recent searches from localStorage on component mount
   useEffect(() => {
     const savedSearches = localStorage.getItem("recentSearches");
     if (savedSearches) {
@@ -21,7 +22,6 @@ const Search = () => {
     }
   }, []);
 
-  // Save recent searches to localStorage
   const saveRecentSearch = (term) => {
     const updatedSearches = [term, ...recentSearches.filter(s => s !== term)].slice(0, 5);
     setRecentSearches(updatedSearches);
@@ -29,7 +29,10 @@ const Search = () => {
   };
 
   const handleSearch = async (e) => {
-    e.preventDefault();
+    if (e && e.preventDefault) {
+      e.preventDefault();
+    }
+    
     if (!searchTerm.trim()) return;
 
     setLoading(true);
@@ -37,14 +40,14 @@ const Search = () => {
     saveRecentSearch(searchTerm);
 
     try {
-      const response = await fetch(`${BASE_URL}/api/recipes/search?term=${encodeURIComponent(searchTerm)}`);
+      // Search by both name and category
+      const response = await axios.get(`${BASE_URL}/api/recipes/search`, {
+        params: {
+          term: searchTerm
+        }
+      });
       
-      if (!response.ok) {
-        throw new Error(`Search failed: ${response.statusText}`);
-      }
-
-      const data = await response.json();
-      setSearchResults(data);
+      setSearchResults(response.data);
     } catch (err) {
       console.error("Search error:", err);
       setError("Failed to search recipes. Please try again.");
@@ -56,24 +59,34 @@ const Search = () => {
 
   const handleRecentSearchClick = (term) => {
     setSearchTerm(term);
-    // Trigger search immediately when clicking a recent search
-    const searchEvent = { preventDefault: () => {} };
-    handleSearch(searchEvent);
+    // Use setTimeout to ensure state is updated before search
+    setTimeout(() => {
+      handleSearch();
+    }, 0);
   };
 
   const handleRecipeClick = (recipe) => {
     navigate(`/recipes/${recipe.category}/ingredient/${recipe.id}`);
   };
 
+  const handleImageError = (id) => {
+    setImgErrors((prevErrors) => ({ ...prevErrors, [id]: true }));
+  };
+
   return (
-    <Container maxWidth="lg" className="search-container">
-      <div className="search-box">
+    <Container 
+      className="searchcontainerbox1" 
+      maxWidth={false}
+      disableGutters
+    >
+      <div className="search-box1">
         <TextField
           fullWidth
           variant="outlined"
-          placeholder="Search all Recipes..."
+          placeholder="Search recipes by name or category..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
+          onKeyPress={(e) => e.key === 'Enter' && handleSearch()}
           className="search-input"
           InputProps={{
             endAdornment: (
@@ -82,18 +95,19 @@ const Search = () => {
                 variant="contained" 
                 className="search-button"
                 disabled={loading}
+                size="medium"
               >
                 Search
               </Button>
-            )
+            ),
+            sx: { paddingRight: '8px' }
           }}
         />
         
-        {/* Moved recent searches directly below the text field */}
         {recentSearches.length > 0 && (
           <div className="recent-searches">
             <Typography variant="h6" component="h2">
-              Recent Search
+              Recent Searches
             </Typography>
             <div className="recent-search-chips">
               {recentSearches.map((term, index) => (
@@ -115,41 +129,44 @@ const Search = () => {
         </Typography>
       )}
 
-      {searchResults.length > 0 && (
+      {loading ? (
+        <p className="loading-message">⏳ Searching for &quot;{searchTerm}&quot;...</p>
+      ) : searchResults.length > 0 ? (
         <div className="search-results">
-          <Typography variant="h6" component="h2" className="results-title">
-            Searched Result
-          </Typography>
-          <Grid container spacing={2}>
-            {searchResults.map((recipe) => (
-              <Grid item xs={12} sm={6} md={4} key={recipe.id}>
-                <Card className="recipe-card" onClick={() => handleRecipeClick(recipe)}>
-                  <CardMedia
-                    component="img"
-                    height="180"
-                    image={recipe.image_url ? `${BASE_URL}${recipe.image_url}` : "/placeholder-image.png"}
-                    alt={recipe.name}
-                    onError={(e) => {
-                      e.target.onerror = null;
-                      e.target.src = "/placeholder-image.png";
-                    }}
-                  />
-                  <div className="recipe-title-overlay">
-                    <Typography variant="subtitle1" component="div">
-                      {recipe.name}
-                    </Typography>
-                  </div>
-                </Card>
-              </Grid>
-            ))}
-          </Grid>
-        </div>
-      )}
+          <div className="recipe-cards-container">
+            {searchResults.map((recipe) => {
+              const imageUrl =
+                imgErrors[recipe.id] || !recipe.image_url
+                  ? "/placeholder-image.png"
+                  : recipe.image_url.startsWith("http")
+                  ? recipe.image_url
+                  : `${BASE_URL}${recipe.image_url}`;
 
-      {!loading && searchTerm && searchResults.length === 0 && (
-        <Typography className="no-results">
-          No recipes found. Try a different search term.
-        </Typography>
+              return (
+                <div
+                  className="recipe-cardbox"
+                  key={recipe.id}
+                  onClick={() => handleRecipeClick(recipe)}
+                >
+                  <div className="image-container">
+                    <img
+                      src={imageUrl}
+                      alt={recipe.name}
+                      onError={() => handleImageError(recipe.id)}
+                    />
+                  </div>
+                  <div className="recipe-name">{recipe.name}</div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      ) : (
+        !loading && searchTerm && (
+          <Typography className="no-results">
+            No recipes found for &quot;{searchTerm}&quot;. Try a different search term.
+          </Typography>
+        )
       )}
     </Container>
   );

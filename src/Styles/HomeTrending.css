@@ -1,0 +1,160 @@
+.home-trending-list {
+    padding: 20px;
+    max-width: 100%;
+    margin: 0 auto;
+  }
+  .home-trending-title1{
+    display: flex;
+    gap: 1400px;
+    justify-content:space-evenly;
+    align-items: center;
+
+  }
+  .home-trending-title1 p{
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+  }
+  .home-trending-title1 p:hover {
+    color: #006666;
+    text-decoration: underline;
+    transform: scale(1.05);
+  }
+  .home-trending-title {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #333;
+    text-align: center;
+  }
+  
+  .home-trending-cards-container {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 150px;
+  }
+  
+  .home-trending-card {
+    height: 360px;
+    width: 420px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background-color: white;
+    position: relative;
+    cursor: pointer;
+  }
+  
+  .home-trending-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  }
+  
+  .home-trending-image-container {
+    height: 290px;
+    overflow: hidden;
+  }
+  
+  .home-trending-image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+  
+  .home-trending-card:hover .home-trending-image-container img {
+    transform: scale(1.05);
+  }
+  
+  .home-trending-recipe-name {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 25px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: white;
+    text-align: center;
+    background-color: teal;
+  }
+  
+  .home-trending-favorite-icon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+    transition: all 0.3s ease;
+    color: #ccc;
+  }
+  
+  .home-trending-favorite-icon:hover {
+    transform: scale(1.1);
+    background-color: rgba(255, 255, 255, 0.9);
+  }
+  
+  .home-trending-favorite-icon.home-trending-favorited {
+    color: #ff4757;
+  }
+  
+  .home-trending-error {
+    color: #ff4757;
+    text-align: center;
+    font-weight: bold;
+  }
+  
+  /* Add trending badge styling */
+  .home-trending-wrapper {
+    position: relative;
+    width: 100%;
+  }
+  
+  .home-trending-indicator {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  
+  .home-trending-badge {
+    background-color: #ff4757;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-weight: bold;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    animation: home-pulse 2s infinite;
+  }
+  
+  @keyframes home-pulse {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.05);
+    }
+    100% {
+      transform: scale(1); 
+    }
+  }
+  
+  /* Responsive styles */
+  @media (max-width: 768px) {
+    .home-trending-cards-container {
+      justify-content: center;
+    }
+    
+    .home-trending-card {
+      width: calc(100% - 20px);
+      max-width: 350px;
+    }
+  }

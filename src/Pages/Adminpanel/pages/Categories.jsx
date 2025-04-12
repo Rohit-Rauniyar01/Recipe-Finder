@@ -1,20 +1,24 @@
-const Categories = () => {
-  return (
-    <div className="categories">
-      <h1>Categories Management</h1>
-      {/* Categories content will go here */}
-    </div>
-  );
-};
-
-const categories = [
-  { value: 'breakfast', label: 'Breakfast' },
-  { value: 'lunch', label: 'Lunch' },
-  { value: 'dinner', label: 'Dinner' },
-  { value: 'dessert', label: 'Dessert' },
-  { value: 'snack', label: 'Snack' }
+// Shared categories configuration for the entire application
+export const categories = [
+  { 
+    name: "Vegetarian", 
+    value: "Vegetarian",
+    image: "https://www.themealdb.com/images/category/vegetarian.png" 
+  },
+  { 
+    name: "Chicken", 
+    value: "Chicken",
+    image: "https://www.themealdb.com/images/category/chicken.png" 
+  },
+  { 
+    name: "Seafood", 
+    value: "Seafood",
+    image: "https://www.themealdb.com/images/category/seafood.png" 
+  },
+  { 
+    name: "Dessert", 
+    value: "Dessert",
+    image: "https://www.themealdb.com/images/category/Dessert.png" 
+  },
 ];
-
-export { categories };
-
-export default Categories; 
+export default categories;

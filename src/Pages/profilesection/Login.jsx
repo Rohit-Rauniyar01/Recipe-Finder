@@ -13,25 +13,33 @@ const Login = () => {
     e.preventDefault();
     setError("");
 
-    // Check for admin credentials
-    if (username === "admin" && password === "123") {
-      // Store admin status in localStorage
-      localStorage.setItem("isAdmin", "true");
-      localStorage.setItem("user", JSON.stringify({ username: "admin", role: "admin" }));
-      navigate("/admin");
-      return;
-    }
-
     try {
-      const response = await axios.post("http://localhost:5000/api/login", {
+      console.log("Attempting login with:", { email: username, password });
+      
+      const response = await axios.post("http://localhost:5000/api/auth/login", {
         email: username, // Using username field for email
         password,
       });
 
-      localStorage.setItem("token", response.data.token);
-      localStorage.setItem("user", JSON.stringify(response.data.user));
-      navigate("/");
+      console.log("Login response:", response.data);
+
+      if (response.data && response.data.token && response.data.user) {
+        // Store token and user data in localStorage
+        localStorage.setItem("token", response.data.token);
+        localStorage.setItem("userInfo", JSON.stringify(response.data.user));
+        
+        // Navigate based on role
+        if (response.data.user.role === 'admin') {
+          console.log('Admin login successful, redirecting to admin dashboard');
+          navigate("/admin");
+        } else {
+          console.log('User login successful, redirecting to home');
+          // Redirect to home page instead of profile
+          navigate("/");
+        }
+      }
     } catch (error) {
+      console.error("Login error:", error);
       setError(
         error.response?.data?.message || 
         "An error occurred during login. Please try again."

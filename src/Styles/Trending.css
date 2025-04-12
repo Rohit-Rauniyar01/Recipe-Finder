@@ -1,0 +1,143 @@
+.trending-list {
+  padding: 20px;
+  width: 90%;
+  margin: 0 auto;
+  margin-top: 40px;
+}
+
+.trending-title {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #333;
+  text-align: left;
+}
+
+.trending-cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 150px; /* Increased gap between cards */
+}
+
+.trending-card {
+  height: 360px;
+  width: 420px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background-color: white;
+  position: relative;
+  cursor: pointer;
+}
+
+.trending-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.trending-image-container {
+  height: 290px;
+  overflow: hidden;
+  height: 80%;
+}
+
+.trending-image-container img {
+  width: 100%;
+  height: 100%;
+  /* height: 90%; */
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.trending-card:hover .trending-image-container img {
+  transform: scale(1.05);
+}
+
+.trending-recipe-name {
+  padding: 2x5px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: white;
+  text-align: center;
+  height: 20%;
+  padding: 25px;
+  background-color: teal;
+}
+
+.trending-favorite-icon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.3s ease;
+  color: #ccc;
+}
+
+.trending-favorite-icon:hover {
+  transform: scale(1.1);
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
+.trending-favorite-icon.trending-favorited {
+  color: #ff4757;
+}
+
+.trending-error {
+  color: #ff4757;
+  text-align: center;
+  font-weight: bold;
+}
+
+.trending-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.trending-indicator {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.trending-badge {
+  background-color: #ff4757;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-weight: bold;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1); 
+  }
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .trending-cards-container {
+    justify-content: center;
+  }
+  
+  .trending-card {
+    width: calc(100% - 20px);
+    max-width: 350px;
+  }
+}

@@ -1,16 +1,11 @@
 
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-// import Navbar from '/src/Pages/Navbar'
-// import HomePage from './Pages/HomeSection/HomePage';
-import App from "./App";
+import React from 'react'
+import ReactDOM from 'react-dom/client'
+import App from './App.jsx'  // Make sure to include the .jsx extension
+// import './index.css'
 
-
-
-
-createRoot(document.getElementById('root')).render(
-  <StrictMode>
-    {/* <HomePage/> */}
-    <App/> 
-  </StrictMode>,
+ReactDOM.createRoot(document.getElementById('root')).render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>,
 )

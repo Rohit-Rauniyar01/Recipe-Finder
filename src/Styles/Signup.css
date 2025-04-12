@@ -8,12 +8,12 @@
     box-sizing: border-box;
 }
 
-body .signup-form {
+.signup-form {
     background-color: white;
     padding: 2rem;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 100%;
+    width: 80%;
     max-width: 400px;
     margin: auto;
 }
@@ -35,7 +35,7 @@ body .signup-form {
 }
 
 .form-group input {
-    width: 90%;
+    width: 85%;
     padding: 0.75rem;
     border: 1px solid #ddd;
     border-radius: 4px;
@@ -51,7 +51,7 @@ body .signup-form {
 .signup-btn {
     width: 100%;
     padding: 0.75rem;
-    background-color: #4CAF50;
+    background-color: #1a73e8;
     color: white;
     border: none;
     border-radius: 4px;
@@ -61,31 +61,48 @@ body .signup-form {
 }
 
 .signup-btn:hover {
-    background-color: #45a049;
+    background-color: #1558b0;
 }
 
-.signup-link {
-    text-align: center;
-    margin-top: 1rem;
-}
-
-.signup-link a {
-    color: #4CAF50;
-    text-decoration: none;
-}
-
-.signup-link a:hover {
-    text-decoration: underline;
+.signup-btn:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
 }
 
 .error-message {
-    color: #ff0000;
-    font-size: 0.875rem;
-    margin-top: 0.25rem;
+    background-color: #ffebee;
+    color: #c62828;
+    padding: 0.75rem;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+    text-align: center;
 }
 
-.success-message {
-    color: #4CAF50;
-    font-size: 0.875rem;
-    margin-top: 0.25rem;
+.login-link {
+    text-align: center;
+    margin-top: 1.5rem;
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.login-link a {
+    color: #1558b0;
+    text-decoration: none;
+    font-weight: 500;
+    margin-left: 5px;
+}
+
+.login-link a:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 480px) {
+    .signup-form {
+        width: 95%;
+        padding: 1.5rem;
+    }
+    
+    .form-group input {
+        width: 90%;
+    }
 }

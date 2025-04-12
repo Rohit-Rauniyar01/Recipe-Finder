@@ -1,4 +1,4 @@
-import React from "react";
+// import React from "react";
 import "../../Styles/Goals.css";
 
 import foodBanner from "/src/assets/food-banner.png"; 

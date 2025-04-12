@@ -12,12 +12,6 @@ const Supports = () => {
 
   return (
     <div className="contact-container">
-      <div className="back-arrow">
-        <a href="javascript:history.back();">
-          <i className="fas fa-arrow-left"></i>
-        </a>
-      </div>
-
       <div className="contact-content">
         <h2>Contact / Support</h2>
         <p>

@@ -4,7 +4,7 @@ import RecipeListPage from "./RecipeListPage";
 const RecipePage = () => {
   return (
     <div className="recipe-page-container">
-      <h1 className="recipe-page-title">All Recipes</h1>
+      {/* <h1 className="recipe-page-title">All Recipes</h1> */}
       <RecipeListPage />
     </div>
   );
