@@ -93,9 +93,9 @@ const EditName = () => {
       // Make API call to update username
       console.log("Sending update request for user:", userId);
       
-      // Fix the endpoint URL to match your backend routes
+      // Fix the endpoint URL to match how routes are mounted in server.js
       const response = await axios.put(
-        "http://localhost:5000/api/user/update-username",
+        "http://localhost:5000/api/update-username",
         { 
           newUsername: newName,
           email: userData.email  // Include email for identification
