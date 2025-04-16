@@ -1,9 +1,42 @@
+import React, { useState, useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import CategoryPage from "./CategoryPage";
 import HomeTrending from "./HomeTrending";
 import "../../Styles/MainContent.css";
 import homeImage from "/src/assets/homeimage.png";
 
 const MainContent = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  // Check login status whenever the component renders or location changes
+  useEffect(() => {
+    checkLoginStatus();
+  }, [location]);
+
+  const checkLoginStatus = () => {
+    const token = localStorage.getItem("token");
+    const userInfo = JSON.parse(localStorage.getItem('userInfo') || '{}');
+    const user = JSON.parse(localStorage.getItem('user') || '{}');
+    
+    const loggedIn = !!token || !!userInfo.email || !!user.email;
+    setIsLoggedIn(loggedIn);
+    
+    // If not logged in and not on home page, redirect to login
+    if (!loggedIn && location.pathname !== "/") {
+      navigate("/login");
+    }
+  };
+
+  const handleClick = (e) => {
+    // If user is not logged in, navigate to login page
+    if (!isLoggedIn) {
+      e.preventDefault();
+      navigate("/login");
+    }
+  };
+
   return (
     <div className="main-containerbox">
       <div className="image-container">
@@ -23,8 +56,19 @@ const MainContent = () => {
         <h3>Looking for inspiration?</h3>
         <p>Discover new recipes based on what you already have.</p>
       </div>
-      <CategoryPage />
-       <HomeTrending />
+      
+      {/* Wrap protected content in conditional rendering */}
+      {isLoggedIn ? (
+        <>
+          <CategoryPage />
+          <HomeTrending />
+        </>
+      ) : (
+        <div className="login-prompt" onClick={() => navigate("/login")}>
+          <h3>Please log in to view recipes</h3>
+          <button className="login-button">Log In</button>
+        </div>
+      )}
     </div>
   );
 };

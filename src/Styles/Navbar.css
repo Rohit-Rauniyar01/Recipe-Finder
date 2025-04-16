@@ -52,3 +52,70 @@
 .signin-button:hover {
   background-color: #ddd;
 }
+
+/* Mobile menu toggle button - hidden by default on desktop */
+.mobile-menu-toggle {
+  display: none;
+  color: white;
+  cursor: pointer;
+  z-index: 1001;
+}
+
+/* Media queries for responsive design */
+@media screen and (max-width: 768px) {
+  .navbar {
+    padding: 10px 15px;
+  }
+  
+  .navbar-logo img {
+    height: 40px; /* Slightly smaller logo on mobile */
+  }
+  
+  /* Show the mobile menu toggle button */
+  .mobile-menu-toggle {
+    display: block;
+  }
+  
+  /* Hide the regular menu */
+  .navbar-menu {
+    position: fixed;
+    top: 0;
+    right: -100%; /* Start off-screen */
+    width: 70%;
+    height: 100vh;
+    background-color: #ff3366;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding-top: 70px;
+    transition: right 0.3s ease;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Show the mobile menu when active */
+  .navbar-menu.mobile-menu-active {
+    right: 0;
+  }
+  
+  .navbar-menu li {
+    margin: 15px 0;
+    font-size: 20px;
+    width: 100%;
+    text-align: center;
+  }
+  
+  .signin-button {
+    padding: 8px 20px;
+    font-size: 18px;
+  }
+}
+
+/* For very small screens */
+@media screen and (max-width: 480px) {
+  .navbar-logo img {
+    height: 35px;
+  }
+  
+  .navbar-menu {
+    width: 80%;
+  }
+}

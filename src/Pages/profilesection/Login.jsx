@@ -27,6 +27,8 @@ const Login = () => {
         // Store token and user data in localStorage
         localStorage.setItem("token", response.data.token);
         localStorage.setItem("userInfo", JSON.stringify(response.data.user));
+        // Also store with 'user' key for compatibility with other components
+        localStorage.setItem("user", JSON.stringify(response.data.user));
         
         // Navigate based on role
         if (response.data.user.role === 'admin') {

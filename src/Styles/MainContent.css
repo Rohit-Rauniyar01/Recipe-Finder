@@ -1,25 +1,20 @@
 body {
     margin: 0;
     padding: 0;
-    /* box-sizing: border-box; */
     font-family: Arial, sans-serif;
     overflow-x: hidden;
-    /* width: 100%; */
-    /* background-color: red; */
 }
 
 .main-containerbox {
-    /* width:9000px; */
-    /* background-color: rgb(17, 0, 255); */
     display: flex;
     flex-direction: column;
     align-items: center;
-     height: auto;
+    height: auto;
     width: 100%;
 }
 
 .image-container {
-    width: 100vw;
+    width: 100%;
     height: 70vh;
     position: relative;
     text-align: center;
@@ -29,7 +24,6 @@ body {
 .home-image {
     width: 100%;
     height: 100%;
-    /* background-color: yellow; */
     object-fit: cover;
 }
 
@@ -42,9 +36,10 @@ body {
     padding: 25px;
     border-radius: 12px;
     color: white;
-    height: 50%;
+    height: auto;
+    min-height: 200px;
     width: 80%;
-    max-width: 1800px;
+    max-width: 1200px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
     display: flex;
     align-items: center;
@@ -52,17 +47,17 @@ body {
 }
 
 .card-text {
-    margin-left: 80px;
+    width: 100%;
+    padding: 20px;
     display: flex;
     flex-direction: column;
     gap: 18px;
 }
 
 .card-text h2 {
-    text-align: left ;
+    text-align: left;
     font-size: 2.8rem;
     margin-bottom: 10px;
-    margin-left: 0;
     color: white;
 }
 
@@ -71,10 +66,9 @@ body {
     font-size: 1.8rem;
     line-height: 1.5;
     margin-top: 10px;
-    margin-left: 0;
-    width: 60% ;
+    width: 100%;
+    max-width: 800px;
 }
-
 
 .middle-text {
     text-align: center;
@@ -91,4 +85,127 @@ body {
     font-size: 1.2rem;
     max-width: 600px;
     margin: 0 auto;
+}
+
+/* Media queries for responsive design */
+@media screen and (max-width: 1200px) {
+    .card-text h2 {
+        font-size: 2.4rem;
+    }
+    
+    .card-text p {
+        font-size: 1.6rem;
+    }
+}
+
+@media screen and (max-width: 992px) {
+    .overlay-card {
+        width: 90%;
+    }
+    
+    .card-text h2 {
+        font-size: 2rem;
+    }
+    
+    .card-text p {
+        font-size: 1.4rem;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .image-container {
+        height: 60vh;
+    }
+    
+    .overlay-card {
+        padding: 15px;
+    }
+    
+    .card-text {
+        margin-left: 0;
+        padding: 10px;
+    }
+    
+    .card-text h2 {
+        font-size: 1.8rem;
+        text-align: center;
+    }
+    
+    .card-text p {
+        font-size: 1.2rem;
+        text-align: center;
+        width: 100%;
+    }
+    
+    .middle-text h3 {
+        font-size: 1.5rem;
+    }
+    
+    .middle-text p {
+        font-size: 1rem;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .image-container {
+        height: 50vh;
+    }
+    
+    .overlay-card {
+        height: auto;
+        min-height: 150px;
+    }
+    
+    .card-text h2 {
+        font-size: 1.5rem;
+    }
+    
+    .card-text p {
+        font-size: 1rem;
+    }
+    
+    .middle-text {
+        margin: 20px 10px;
+    }
+}
+
+/* Add this to your existing CSS */
+
+.login-prompt {
+    margin: 40px 0;
+    padding: 30px;
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    text-align: center;
+    width: 80%;
+    max-width: 600px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+}
+
+.login-prompt h3 {
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.login-button {
+    background-color: rgba(207, 27, 63, 0.9);
+    color: white;
+    border: none;
+    padding: 10px 25px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.login-button:hover {
+    background-color: rgba(207, 27, 63, 1);
+}
+
+@media screen and (max-width: 768px) {
+    .login-prompt {
+        width: 90%;
+        padding: 20px;
+    }
 }

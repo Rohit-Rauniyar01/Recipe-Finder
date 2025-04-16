@@ -13,12 +13,32 @@ const Search = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [imgErrors, setImgErrors] = useState({});
+  const [favorites, setFavorites] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
     const savedSearches = localStorage.getItem("recentSearches");
     if (savedSearches) {
       setRecentSearches(JSON.parse(savedSearches));
+    }
+    
+    // Get user email from localStorage
+    const userInfo = JSON.parse(localStorage.getItem('userInfo') || '{}');
+    const user = JSON.parse(localStorage.getItem('user') || '{}');
+    const userEmail = userInfo.email || user.email;
+    
+    // If user is logged in, fetch their favorites
+    if (userEmail) {
+      const fetchFavorites = async () => {
+        try {
+          const favResponse = await axios.get(`${BASE_URL}/api/favorites/${userEmail}`);
+          setFavorites(favResponse.data);
+        } catch (favErr) {
+          console.error("Error fetching favorites:", favErr);
+        }
+      };
+      
+      fetchFavorites();
     }
   }, []);
 
@@ -66,11 +86,50 @@ const Search = () => {
   };
 
   const handleRecipeClick = (recipe) => {
-    navigate(`/recipes/${recipe.category}/ingredient/${recipe.id}`);
+    navigate(`/recipes/${recipe.category || 'all'}/ingredient/${recipe.id}`);
   };
 
   const handleImageError = (id) => {
     setImgErrors((prevErrors) => ({ ...prevErrors, [id]: true }));
+  };
+  
+  const toggleFavorite = async (e, recipe) => {
+    e.stopPropagation(); // Prevent triggering the card click
+    
+    // Get user email from localStorage
+    const userInfo = JSON.parse(localStorage.getItem('userInfo') || '{}');
+    const user = JSON.parse(localStorage.getItem('user') || '{}');
+    const userEmail = userInfo.email || user.email;
+    
+    if (!userEmail) {
+      alert("Please log in to save favorites");
+      navigate('/login');
+      return;
+    }
+    
+    try {
+      const isFavorite = favorites.some(fav => fav.recipe_id === recipe.id);
+      
+      if (isFavorite) {
+        // Remove from favorites
+        await axios.delete(`${BASE_URL}/api/favorites/${userEmail}/${recipe.id}`);
+        setFavorites(favorites.filter(fav => fav.recipe_id !== recipe.id));
+      } else {
+        // Add to favorites
+        const response = await axios.post(`${BASE_URL}/api/favorites`, {
+          email: userEmail,
+          recipe_id: recipe.id
+        });
+        setFavorites([...favorites, response.data]);
+      }
+    } catch (error) {
+      console.error("Error updating favorites:", error);
+      alert("Failed to update favorites. Please try again.");
+    }
+  };
+
+  const isFavorite = (recipeId) => {
+    return favorites.some(fav => fav.recipe_id === recipeId);
   };
 
   return (
@@ -148,6 +207,13 @@ const Search = () => {
                   key={recipe.id}
                   onClick={() => handleRecipeClick(recipe)}
                 >
+                  {/* Favorite Heart Icon */}
+                  <div 
+                    className={`favorite-icon ${isFavorite(recipe.id) ? 'favorited' : ''}`}
+                    onClick={(e) => toggleFavorite(e, recipe)}
+                  >
+                    ❤
+                  </div>
                   <div className="image-container">
                     <img
                       src={imageUrl}

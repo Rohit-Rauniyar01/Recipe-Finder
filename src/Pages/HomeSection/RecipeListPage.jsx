@@ -14,11 +14,37 @@ const RecipeListPage = ({ isTrending }) => {
     const [error, setError] = useState(null);
     const [imgErrors, setImgErrors] = useState({});
     const [favorites, setFavorites] = useState([]);
+    const [userId, setUserId] = useState(null);
 
     useEffect(() => {
-        // Load favorites from localStorage
-        const savedFavorites = JSON.parse(localStorage.getItem('favorites') || '[]');
-        setFavorites(savedFavorites);
+        // Get user email from localStorage (trying both possible keys)
+        const userInfo = JSON.parse(localStorage.getItem('userInfo') || '{}');
+        const user = JSON.parse(localStorage.getItem('user') || '{}');
+        
+        // Use whichever has the email
+        const userEmail = userInfo.email || user.email;
+        
+        // For consistency, ensure both storage keys have the same data
+        if (userEmail) {
+            const userData = userInfo.email ? userInfo : user;
+            localStorage.setItem('user', JSON.stringify(userData));
+            localStorage.setItem('userInfo', JSON.stringify(userData));
+        }
+        
+        // Fetch user's favorites from database
+        const fetchFavorites = async () => {
+            if (!userEmail) return;
+            
+            try {
+                console.log("Fetching favorites for email:", userEmail);
+                const response = await axios.get(`${BASE_URL}/api/favorites/${userEmail}`);
+                if (response.data) {
+                    setFavorites(response.data);
+                }
+            } catch (err) {
+                console.error("Error fetching favorites:", err);
+            }
+        };
         
         const fetchRecipes = async () => {
             try {
@@ -68,39 +94,71 @@ const RecipeListPage = ({ isTrending }) => {
         };
     
         fetchRecipes();
+        fetchFavorites();
     }, [category, isTrending]); // Re-fetch when category or isTrending changes
 
     const handleRecipeClick = (recipeId) => {
+        // Update view count when a recipe is clicked
+        updateViewCount(recipeId);
         navigate(`/recipes/${category || 'all'}/ingredient/${recipeId}`);
+    };
+
+    // Function to update view count
+    const updateViewCount = async (recipeId) => {
+        try {
+            await axios.post(`${BASE_URL}/api/recipes/${recipeId}/view`);
+            console.log(`View count updated for recipe ${recipeId}`);
+        } catch (error) {
+            console.error("Error updating view count:", error);
+        }
     };
 
     const handleImageError = (id) => {
         setImgErrors((prevErrors) => ({ ...prevErrors, [id]: true }));
     };
 
-    const toggleFavorite = (e, recipe) => {
+    const toggleFavorite = async (e, recipe) => {
         e.stopPropagation(); // Prevent triggering the card click
         
-        const isFavorite = favorites.some(fav => fav.id === recipe.id);
-        let updatedFavorites;
+        const user = JSON.parse(localStorage.getItem('user') || '{}');
+        const userEmail = user.email;
         
-        if (isFavorite) {
-            updatedFavorites = favorites.filter(fav => fav.id !== recipe.id);
-        } else {
-            updatedFavorites = [...favorites, recipe];
+        if (!userEmail) {
+            alert("Please log in to save favorites");
+            navigate('/login');
+            return;
         }
         
-        setFavorites(updatedFavorites);
-        localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
+        const isFavorite = favorites.some(fav => fav.recipe_id === recipe.id);
+        
+        try {
+            if (isFavorite) {
+                // Remove from favorites
+                await axios.delete(`${BASE_URL}/api/favorites/${userEmail}/${recipe.id}`);
+                setFavorites(favorites.filter(fav => fav.recipe_id !== recipe.id));
+            } else {
+                // Add to favorites
+                await axios.post(`${BASE_URL}/api/favorites`, {
+                    email: userEmail,
+                    recipe_id: recipe.id
+                });
+                
+                // Update local state with the new favorite
+                const newFavorite = {
+                    email: userEmail,
+                    recipe_id: recipe.id,
+                    recipe: recipe
+                };
+                setFavorites([...favorites, newFavorite]);
+            }
+        } catch (err) {
+            console.error("Error updating favorites:", err);
+            alert("Failed to update favorites. Please try again.");
+        }
     };
 
-    // const goToFavorites = (e) => {
-    //     e.stopPropagation(); // Prevent triggering the card click
-    //     navigate('/favorites');
-    // };
-
     const isFavorite = (recipeId) => {
-        return favorites.some(fav => fav.id === recipeId);
+        return favorites.some(fav => fav.recipe_id === recipeId);
     };
 
     const pageTitle = isTrending 

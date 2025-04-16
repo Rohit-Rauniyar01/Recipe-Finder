@@ -20,16 +20,20 @@ const Profile = () => {
   useEffect(() => {
     // Check if user is logged in by looking for token in localStorage
     const token = localStorage.getItem("token");
-    const userInfo = JSON.parse(localStorage.getItem("userInfo")); // Changed from "user" to "userInfo"
+    // Try to get user data from both possible keys
+    const userInfo = JSON.parse(localStorage.getItem("userInfo") || localStorage.getItem("user") || "{}");
     
-    if (!token || !userInfo) {
+    if (!token || !userInfo || Object.keys(userInfo).length === 0) {
       // Redirect to login if not logged in
       navigate("/login");
       return;
     }
     
+    // Also ensure the user data is stored with both keys for consistency
+    localStorage.setItem("user", JSON.stringify(userInfo));
+    localStorage.setItem("userInfo", JSON.stringify(userInfo));
+    
     setUserData(userInfo);
-    // Remove the redirect to home page - this was causing the issue
   }, [navigate]);
 
   const handleMenuItemClick = (path) => {
@@ -37,9 +41,10 @@ const Profile = () => {
   };
 
   const handleLogout = () => {
-    // Clear user data from localStorage
+    // Clear user data from localStorage (both keys)
     localStorage.removeItem("token");
-    localStorage.removeItem("userInfo"); // Changed from "user" to "userInfo"
+    localStorage.removeItem("userInfo");
+    localStorage.removeItem("user");
     // Redirect to home page after logout
     navigate("/");
   };
@@ -77,11 +82,11 @@ const Profile = () => {
           text="About" 
           onClick={() => handleMenuItemClick("/about")} 
         />
-        <MenuItem 
+        {/* <MenuItem 
           icon={<FaUserFriends />} 
           text="Support" 
           onClick={() => handleMenuItemClick("/support")} 
-        />
+        /> */}
         <MenuItem 
           icon={<FaSignOutAlt />} 
           text="Logout" 
