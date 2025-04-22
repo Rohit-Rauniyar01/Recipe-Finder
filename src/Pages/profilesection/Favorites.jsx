@@ -154,12 +154,12 @@ const Favorites = () => {
                                 key={favorite.recipe_id}
                                 onClick={() => handleRecipeClick(recipe)}
                             >
-                                {/* Remove from Favorites Button */}
+                                {/* Remove from Favorites Button - Changed to heart */}
                                 <div 
                                     className="remove-favorite"
                                     onClick={(e) => removeFromFavorites(e, favorite.recipe_id)}
                                 >
-                                    ✖
+                                    ❤
                                 </div>
 
                                 {/* Image Container */}

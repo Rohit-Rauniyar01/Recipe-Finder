@@ -56,10 +56,10 @@ const Login = () => {
         {error && <div className="error-message">{error}</div>}
         <form onSubmit={handleSubmit}>
           <div className="input-group">
-            <label className="input-label">Username/Email:</label>
+            <label className="input-label">Email:</label>
             <input
               type="text"
-              placeholder="Enter your username or email"
+              placeholder="Enter your email"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
               className="input-field"
